@@ -1,0 +1,26 @@
+<!-- view-details.ejs -->
+
+<h1>Crime Details</h1>
+
+<h3>File Number: <%= crime.fileNumber %></h3>
+<p>Criminal Name: <%= crime.criminalName %></p>
+<p>Criminal ID Number: <%= crime.criminalIdNumber %></p>
+<p>Crime Committed Place: <%= crime.crimeCommittedPlace %></p>
+<p>Crime Description: <%= crime.crimeDescription %></p>
+<p>Crime Type: <%= crime.crimeType %></p>
+<p>Victim Name: <%= crime.victimName %></p>
+<p>Victim ID: <%= crime.victimId %></p>
+<p>Finger Print: <%= crime.fingerPrint %></p>
+
+<h3>Additional Files:</h3>
+<% if (crime.additionalFiles && crime.additionalFiles.length > 0) { %>
+  <ul>
+    <% for (let i = 0; i < crime.additionalFiles.length; i++) { %>
+      <li><%= crime.additionalFiles[i].file_path %></li>
+    <% } %>
+  </ul>
+<% } else { %>
+  <p>No additional files available.</p>
+<% } %>
+
+<a href="/crimes">Back to All Crimes</a>

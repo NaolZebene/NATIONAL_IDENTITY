@@ -1,0 +1,25 @@
+<!-- update-referral.ejs -->
+
+<h1>Update Referral</h1>
+
+<form action="/referrals/<%= referral._id %>/update" method="POST">
+  <label for="idNumber">ID Number:</label>
+  <input type="text" name="idNumber" id="idNumber" value="<%= referral.idNumber %>" required>
+
+  <label for="referralType">Referral Type:</label>
+  <input type="text" name="referralType" id="referralType" value="<%= referral.referralType %>" required>
+
+  <label for="weaknesses">Weaknesses:</label>
+  <textarea name="weaknesses" id="weaknesses" rows="3"><%= referral.weaknesses %></textarea>
+
+  <label for="currentCase">Current Case:</label>
+  <textarea name="currentCase" id="currentCase" rows="5" required><%= referral.currentCase %></textarea>
+
+  <label for="location">Location:</label>
+  <input type="text" name="location" id="location" value="<%= referral.location %>">
+
+  <label for="hospitalName">Hospital Name:</label>
+  <input type="text" name="hospitalName" id="hospitalName" value="<%= referral.hospitalName %>" required>
+
+  <button type="submit">Update</button>
+</form>

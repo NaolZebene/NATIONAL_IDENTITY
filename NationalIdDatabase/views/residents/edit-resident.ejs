@@ -1,0 +1,38 @@
+<h1>Edit Resident</h1>
+
+<form action="/residents/edit/<%= resident._id %>" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" name="name" value="<%= resident.name %>" required>
+
+  <label for="location">Location:</label>
+  <input type="text" name="location" value="<%= resident.location %>" required>
+
+  <label for="phoneNumber">Phone Number:</label>
+  <input type="tel" name="phoneNumber" value="<%= resident.phoneNumber %>" required>
+
+  <label for="idNumber">ID Number:</label>
+  <input type="text" name="idNumber" value="<%= resident.idNumber %>" required>
+
+  <label for="maritalStatus">Marital Status:</label>
+  <input type="text" name="maritalStatus" value="<%= resident.maritalStatus %>" required>
+
+  <label for="job">Job:</label>
+  <input type="text" name="job" value="<%= resident.job %>" required>
+
+  <label for="birthday">Birthday:</label>
+  <input type="date" name="birthday" value="<%= resident.birthday %>" required>
+
+  <label for="emergencyCall">Emergency Call:</label>
+  <input type="text" name="emergencyCall" value="<%= resident.emergencyCall %>" required>
+
+  <label for="nationality">Nationality:</label>
+  <input type="text" name="nationality" value="<%= resident.nationality %>" required>
+
+  <label for="emergencyPersonName">Emergency Person Name:</label>
+  <input type="text" name="emergencyPersonName" value="<%= resident.emergencyPersonName %>" required>
+
+  <label for="homeNumber">Home Number:</label>
+  <input type="text" name="homeNumber" value="<%= resident.homeNumber %>" required>
+
+  <button type="submit">Update Resident</button>
+</form>

@@ -1,0 +1,12 @@
+<!-- view-details.ejs -->
+
+<h1>Subsector Details</h1>
+
+<p><strong>Name:</strong> <%= subsector.name %></p>
+<p><strong>Location:</strong> <%= subsector.location %></p>
+<p><strong>Email:</strong> <%= subsector.email %></p>
+<p><strong>Username:</strong> <%= subsector.username %></p>
+<p><strong>Role:</strong> <%= subsector.role %></p>
+
+<a href="/subsectors/update/<%= subsector._id %>/">Edit</a>
+<a href="/subsectors/delete/<%= subsector._id %>/">Delete</a>

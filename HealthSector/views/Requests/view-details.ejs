@@ -1,0 +1,37 @@
+<!-- view-details.ejs -->
+
+<h1>Request Details</h1>
+
+<h2>Request Information</h2>
+<p><strong>Request ID:</strong> <%= request._id %></p>
+<p><strong>LAB_RESULT:</strong> <%= request.labResult ? request.labResult.sampleCode : 'Not Available' %></p>
+<% if (request.description) { %>
+  <p><strong>Description:</strong> <%= request.description %></p>
+<% } %>
+<% if (request.diseaseName) { %>
+  <p><strong>Disease Name:</strong> <%= request.diseaseName %></p>
+<% } %>
+<p><strong>Status:</strong> <%= request.status %></p>
+
+<h2>Personal Information</h2>
+<% if (request.personalInformation) { %>
+  <p><strong>Name:</strong> <%= request.personalInformation.name %></p>
+  <% if (request.personalInformation.address) { %>
+    <p><strong>Address:</strong> <%= request.personalInformation.address %></p>
+  <% } %>
+<% } else { %>
+  <p><strong>Personal Information Not Available</strong></p>
+<% } %>
+
+<h2>Doctor Information</h2>
+<% if (request.doctorInformation) { %>
+  <p><strong>Name:</strong> <%= request.doctorInformation.name %></p>
+  <% if (request.doctorInformation.email) { %>
+    <p><strong>Email:</strong> <%= request.doctorInformation.email %></p>
+  <% } %>
+<% } else { %>
+  <p><strong>Doctor Information Not Available</strong></p>
+<% } %>
+
+<a href="/requests/edit/<%= request._id %>">Edit</a>
+<a href="/requests/delete/<%= request._id %>">Delete</a>

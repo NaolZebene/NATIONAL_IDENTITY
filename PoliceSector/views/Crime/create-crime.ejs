@@ -1,0 +1,37 @@
+<!-- create-crime.ejs -->
+
+<h1>Create Crime</h1>
+
+<form action="/crimes/create" method="POST" enctype="multipart/form-data">
+  <label for="fileNumber">File Number:</label>
+  <input type="text" id="fileNumber" name="fileNumber" required>
+
+  <label for="criminalName">Criminal Name:</label>
+  <input type="text" id="criminalName" name="criminalName" required>
+
+  <label for="criminalIdNumber">Criminal ID Number:</label>
+  <input type="text" id="criminalIdNumber" name="criminalIdNumber" required>
+
+  <label for="crimeCommittedPlace">Crime Committed Place:</label>
+  <input type="text" id="crimeCommittedPlace" name="crimeCommittedPlace" required>
+
+  <label for="crimeDescription">Crime Description:</label>
+  <textarea id="crimeDescription" name="crimeDescription" required></textarea>
+
+  <label for="crimeType">Crime Type:</label>
+  <input type="text" id="crimeType" name="crimeType" required>
+
+  <label for="victimName">Victim Name:</label>
+  <input type="text" id="victimName" name="victimName">
+
+  <label for="victimId">Victim ID:</label>
+  <input type="text" id="victimId" name="victimId">
+
+  <label for="fingerPrint">Finger Print:</label>
+  <input type="text" id="fingerPrint" name="fingerPrint">
+
+  <label for="additionalFiles">Additional Files:</label>
+  <input type="file" id="additionalFiles" name="additionalFiles" multiple>
+
+  <button type="submit">Create</button>
+</form>

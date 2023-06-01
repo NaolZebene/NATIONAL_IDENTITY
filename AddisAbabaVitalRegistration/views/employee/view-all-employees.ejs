@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>All Employees</title>
+</head>
+<body>
+  <h1>All Employees</h1>
+
+  <ul>
+    <% employees.forEach(function(employee) { %>
+      <li><a href="/employees/<%= employee._id %>"><%= employee.fullName %></a></li>
+    <% }); %>
+  </ul>
+
+  <a href="/employees/create">Create New Employee</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- view-details.ejs -->
+
+<h1>Laboratory Sample Details</h1>
+
+<p><strong>Card Number:</strong> <%= laboratorySample.cardNumber %></p>
+<p><strong>Process Name:</strong> <%= laboratorySample.processName %></p>
+<p><strong>Test Result:</strong> <%= laboratorySample.testResult %></p>
+<p><strong>Reference Value:</strong> <%= laboratorySample.referenceValue %></p>
+<p><strong>Data Conducted:</strong> <%= laboratorySample.dataConducted %></p>
+<p><strong>Diagnosis Summary:</strong> <%= laboratorySample.diagnosisSummary %></p>
+
+<a href="/laboratorySamples/<%= laboratorySample._id %>/edit">Edit</a>
+<form action="/laboratorySamples/<%= laboratorySample._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this laboratory sample?')">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete</button>
+</form>

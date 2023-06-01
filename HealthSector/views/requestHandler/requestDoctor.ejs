@@ -1,0 +1,104 @@
+<% layout('boilerplate') %>
+
+
+<div class="card shadow mb-4">
+  <!-- Card Header - Accordion -->
+  <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+      role="button" aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">General Information</h6>
+  </a>
+  <!-- Card Content - Collapse -->
+
+ 
+  <div class="collapse show" id="collapseCardExample">
+    <ul class="list-group">
+      <li class="list-group-item">ID: <%= data.id %></li>
+      <li class="list-group-item">Status: <%= data.status %></li>
+      <li class="list-group-item">Description: <%= data.description %></li>
+      <li class="list-group-item">Medicine Ordered As: <%= data.medicine_ordered_as %></li>
+      <li class="list-group-item">Disease Name: <%= data.disease_name %></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-header">
+      Lab Result
+  </div>
+  <div class="card-body">
+    <% if(labData){ %>
+    <ul class="list-group">
+      <li class="list-group-item">Process Name: <%= labData.processName%></li>
+      <li class="list-group-item">Test Result: <%= data.testResult %></li>
+      <li class="list-group-item">Reference Value: <%= data.referenceValue %></li>
+      <li class="list-group-item">Diagnosis Summary: <%= data.diagnosisSummary %></li>
+    </ul>
+    <% } %>
+  </div>
+</div>
+
+
+<div class="card mb-4">
+  <div class="card-header">
+      CT Scan
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li class="list-group-item">CT Scan Result : <%= data.Ct_scan.data.description%></li>
+      <li class="list-group-item">CT Scan image : <%= data.Ct_scan.data.img_path%></li>
+     
+    </ul>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-header">
+      Ultrasound
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li class="list-group-item">Ultrasound : <%= data.ultraSound.data.description%></li>
+      <li class="list-group-item">UltraSound-image : <%= data.ultraSound.data.img_path%></li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="card mb-4">
+  <div class="card-header">
+      Ultrasound
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li class="list-group-item">Xray result : <%= data.x_ray.data.description%></li>
+      <li class="list-group-item">Xray-image : <%= data.x_ray.data.img_path%></li>
+    </ul>
+  </div>
+</div>
+
+
+<form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/requests/doctoredit/<%= data.id %>/" method="post">
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Disease Description</label>
+    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+  <input class="form-control" name="medicine_ordered_as" type="text" placeholder="Medicine ordered" style="margin-top: 39px;">
+
+  <input class="form-control" name="disease_name" type="text" placeholder="Disease Name" style="margin-top: 39px;">
+  <select class="form-control" style="margin-top: 36px;" name="status" required>
+    <option value="completed">Completed</option>
+      <option value="toctscan">To Ct-scan</option>
+      <option value="tolab">To Lab</option>
+      <option value="todoctor">To Doctor</option>
+      <option value="toxray">To Xay Ray</option>
+      <option value="toultrasound">To ultrasound</option>
+   </select>
+  <button  class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;ADD</button>
+</form>
+
+</div>
+</div>\
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>

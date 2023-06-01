@@ -1,0 +1,44 @@
+<h1>Create Resident</h1>
+
+<form action="/residents/create" method="POST" enctype="multipart/form-data">
+  <label for="name">Name:</label>
+  <input type="text" name="name" required>
+
+  <label for="location">Location:</label>
+  <input type="text" name="location" required>
+
+  <label for="phoneNumber">Phone Number:</label>
+  <input type="tel" name="phoneNumber" required>
+
+  <label for="idNumber">ID Number:</label>
+  <input type="text" name="idNumber" required>
+
+  <label for="maritalStatus">Marital Status:</label>
+  <input type="text" name="maritalStatus" required>
+
+  <label for="job">Job:</label>
+  <input type="text" name="job" required>
+
+  <label for="birthday">Birthday:</label>
+  <input type="date" name="birthday" required>
+
+  <label for="emergencyCall">Emergency Call:</label>
+  <input type="text" name="emergencyCall" required>
+
+  <label for="nationality">Nationality:</label>
+  <input type="text" name="nationality" required>
+
+  <label for="emergencyPersonName">Emergency Person Name:</label>
+  <input type="text" name="emergencyPersonName" required>
+
+  <label for="homeNumber">Home Number:</label>
+  <input type="text" name="homeNumber" required>
+
+  <label for="image">Image:</label>
+  <input type="file" name="image" accept="image/*" required>
+
+  <!-- <label for="additional_file">Additional File:</label>
+  <input type="file" name="additional_file" required> -->
+
+  <button type="submit">Create Resident</button>
+</form>

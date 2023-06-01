@@ -1,0 +1,14 @@
+<h1>Update Subsector</h1>
+
+<form action="/subsectors/<%= subsector._id %>/update" method="POST">
+  <label for="subsectorName">Subsector Name:</label>
+  <input type="text" id="subsectorName" name="subsectorName" value="<%= subsector.subsectorName %>" required>
+
+  <label for="location">Location:</label>
+  <input type="text" id="location" name="location" value="<%= subsector.location %>" required>
+
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" value="<%= subsector.username %>" required>
+
+  <button type="submit">Update Subsector</button>
+</form>

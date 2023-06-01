@@ -1,0 +1,11 @@
+<h1>Employee Details</h1>
+
+<% if (!employee) { %>
+  <p>Employee not found.</p>
+<% } else { %>
+  <h3>Full Name: <%= employee.fullName %></h3>
+  <p>ID Number: <%= employee.idNumber %></p>
+  <p>Email: <%= employee.email %></p>
+  <p>Username: <%= employee.username %></p>
+  <p>Role: <%= employee.role %></p>
+<% } %>

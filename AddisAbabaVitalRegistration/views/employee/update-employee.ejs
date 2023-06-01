@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Edit Employee</title>
+</head>
+<body>
+  <h1>Edit Employee</h1>
+
+  <form action="/employees/<%= employee._id %>" method="POST">
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" value="<%= employee.fullName %>" required><br>
+
+    <label for="idNumber">ID Number:</label>
+    <input type="text" id="idNumber" name="idNumber" value="<%= employee.idNumber %>" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<%= employee.email %>" required><br>
+
+    <label for="role">Role:</label>
+    <select id="role" name="role">
+      <option value="employee" <%= employee.role === 'employee' ? 'selected' : '' %>>Employee</option>
+      <option value="admin" <%= employee.role === 'admin' ? 'selected' : '' %>>Admin</option>
+      <option value="manager" <%= employee.role === 'manager' ? 'selected' : '' %>>Manager</option>
+    </select><br>
+
+    <input type="submit" value="Update">
+  </form>
+</body>
+</html>

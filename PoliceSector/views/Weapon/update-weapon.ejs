@@ -1,0 +1,17 @@
+<h1>Update Weapon</h1>
+
+<form action="/weapons/<%= weapon._id %>" method="POST" enctype="multipart/form-data">
+  <label for="weaponName">Weapon Name</label>
+  <input type="text" id="weaponName" name="weaponName" value="<%= weapon.weaponName %>" required>
+
+  <label for="weaponAmount">Weapon Amount</label>
+  <input type="number" id="weaponAmount" name="weaponAmount" value="<%= weapon.weaponAmount %>" required>
+
+  <label for="weaponSerialNumber">Weapon Serial Number</label>
+  <input type="text" id="weaponSerialNumber" name="weaponSerialNumber" value="<%= weapon.weaponSerialNumber %>" required>
+
+  <label for="additionalFiles">Additional Files</label>
+  <input type="file" id="additionalFiles" name="additionalFiles" multiple>
+
+  <button type="submit">Update</button>
+</form>

@@ -1,0 +1,19 @@
+<h1>All Subsectors</h1>
+
+<% if (subsectors && subsectors.length > 0) { %>
+  <ul>
+    <% subsectors.forEach((subsector) => { %>
+      <li>
+        <h3>Subsector Name: <%= subsector.subsectorName %></h3>
+        <p>Location: <%= subsector.location %></p>
+        <a href="/subsector/view/<%= subsector._id %>">View Details</a>
+        <a href="/subsector/update/<%= subsector._id %>">Edit</a>
+        <a href="/subsector/delete/<%= subsector._id %>">Delete</a>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No subsectors found.</p>
+<% } %>
+
+<a href="/subsector/create">Create Subsector</a>

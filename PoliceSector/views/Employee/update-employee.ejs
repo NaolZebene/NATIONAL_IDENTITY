@@ -1,0 +1,26 @@
+<h1>Edit Employee</h1>
+
+<form action="/employees/<%= employee._id %>/update" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" value="<%= employee.name %>" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" value="<%= employee.email %>" required>
+
+  <label for="fingerprint">Fingerprint:</label>
+  <input type="text" id="fingerprint" name="fingerprint" value="<%= employee.fingerprint %>" required>
+
+  <label for="idNumber">ID Number:</label>
+  <input type="text" id="idNumber" name="idNumber" value="<%= employee.idNumber %>" required>
+
+  <label for="role">Role:</label>
+  <select id="role" name="role" required>
+    <option value="admin" <%= (employee.role === 'admin') ? 'selected' : '' %>>Admin</option>
+    <option value="manager" <%= (employee.role === 'manager') ? 'selected' : '' %>>Manager</option>
+    <option value="employee" <%= (employee.role === 'employee') ? 'selected' : '' %>>Employee</option>
+  </select>
+
+  <button type="submit">Update</button>
+</form>
+
+<a href="/employees">Back to Employees</a>

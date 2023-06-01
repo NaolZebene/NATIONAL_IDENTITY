@@ -1,0 +1,18 @@
+<h1>All Employees</h1>
+
+<% if (employees && employees.length > 0) { %>
+  <ul>
+    <% employees.forEach((employee) => { %>
+      <li>
+        <h3>Name: <%= employee.name %></h3>
+        <p>Email: <%= employee.email %></p>
+        <p>Role: <%= employee.role %></p>
+        <a href="/employees/<%= employee._id %>">View Details</a>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No employees found.</p>
+<% } %>
+
+<a href="/employees/create">Create Employee</a>

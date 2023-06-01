@@ -1,0 +1,99 @@
+<% layout('boilerplate') %>
+
+<div class="container-fluid">
+  <h3 class="text-dark mb-1">Referrals</h3>
+</div>
+
+<form class="shadow-sm validated-form" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/referrals/create" method="post" novalidate>
+
+  <input class="form-control mb-4" id="idNumber" name="idNumber" type="text" placeholder="Secotor Name" required>
+  <ul id="searchResults"></ul>
+
+  <input class="form-control mb-4" name="idin" id="idin" type="text" placeholder="Secotor ID" required>
+ 
+
+  <input class="form-control" name="location" type="text" placeholder="Location" required>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Referral Type</label>
+    <textarea class="form-control" name="referralType" id="exampleFormControlTextarea1" rows="3" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Weaknesses</label>
+    <textarea class="form-control" name="weaknesses" id="exampleFormControlTextarea1" rows="3"required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Current Case</label>
+    <textarea class="form-control" name="currentCase" id="exampleFormControlTextarea1" rows="3" required></textarea>
+  </div>
+
+  
+
+  <button  class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;ADD</button>
+</form>
+
+</div>
+</div>\
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('idNumber');
+  const searchResults = document.getElementById('searchResults');
+  const idInput = document.getElementById('idin')
+  // Function to handle filling the input with the clicked result's name
+  const fillInput = (event) => {
+    const clickedResult = event.target;
+    searchInput.value = clickedResult.innerText;
+    idInput.value = clickedResult.id;
+    searchResults.innerHTML = "";
+  };
+
+  // Function to perform the live search
+  const performLiveSearch = async () => {
+    const query = searchInput.value;
+
+    try {
+      // Make a GET request to the server to get the search results
+      const response = await axios.get(`/subsectors/search?query=${query}`);
+      const results = response.data;
+      // console.log(results)
+      // Clear the previous results
+      searchResults.innerHTML = '';
+
+      // Create a new list item for each result
+      results.forEach((result) => {
+        const listItem = document.createElement('li');
+        listItem.innerText = result.name;
+        listItem.id= result._id 
+        listItem.addEventListener('click', fillInput); // Add click event listener
+        searchResults.appendChild(listItem);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Event listener for input changes
+  searchInput.addEventListener('input', performLiveSearch);
+});
+
+
+</script>

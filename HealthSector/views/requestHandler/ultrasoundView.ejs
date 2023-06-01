@@ -1,0 +1,43 @@
+<% layout('boilerplate') %> 
+
+<div id="content-1">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4"> Ultrasound Request </h3>
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Requests</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Request ID</th> 
+                                <th>Status</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <% for(datas of data){ %>
+                                 <td><%= datas._id %> </td>
+                                 <td><%=datas.status%></td>
+                                 <td><%= datas.description %></td>
+                                 <td><a class="btn btn-warning" href="/requests/ultraSound/<%= datas._id %>/">Submit Result</a></td>
+                            </tr>
+                          
+                            <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>

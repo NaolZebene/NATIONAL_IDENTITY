@@ -1,0 +1,27 @@
+<!-- update-laboratorySample.ejs -->
+
+<h1>Update Laboratory Sample</h1>
+
+<form action="/laboratorySamples/update/<%= laboratorySample._id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+
+  <label for="cardNumber">Card Number:</label>
+  <input type="text" id="cardNumber" name="cardNumber" value="<%= laboratorySample.cardNumber %>" required>
+
+  <label for="processName">Process Name:</label>
+  <input type="text" id="processName" name="processName" value="<%= laboratorySample.processName %>">
+
+  <label for="testResult">Test Result:</label>
+  <input type="text" id="testResult" name="testResult" value="<%= laboratorySample.testResult %>">
+
+  <label for="referenceValue">Reference Value:</label>
+  <input type="text" id="referenceValue" name="referenceValue" value="<%= laboratorySample.referenceValue %>">
+
+  <label for="dataConducted">Data Conducted:</label>
+  <input type="date" id="dataConducted" name="dataConducted" value="<%= laboratorySample.dataConducted %>">
+
+  <label for="diagnosisSummary">Diagnosis Summary:</label>
+  <textarea id="diagnosisSummary" name="diagnosisSummary"><%= laboratorySample.diagnosisSummary %></textarea>
+
+  <button type="submit">Update</button>
+</form>

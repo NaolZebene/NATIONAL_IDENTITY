@@ -1,0 +1,20 @@
+<h1>Weapon Details</h1>
+
+<p><strong>Name:</strong> <%= weapon.weaponName %></p>
+<p><strong>Amount:</strong> <%= weapon.weaponAmount %></p>
+<p><strong>Serial Number:</strong> <%= weapon.weaponSerialNumber %></p>
+
+<% if (weapon.additionalFiles && weapon.additionalFiles.length > 0) { %>
+  <h2>Additional Files:</h2>
+  <ul>
+    <% weapon.additionalFiles.forEach((file) => { %>
+      <li><a href="<%= file.filePath %>"><%= file.filePath %></a></li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<a href="/weapons">Back to All Weapons</a>
+<a href="/weapons/<%= weapon._id %>/update">Edit</a>
+<form action="/weapons/<%= weapon._id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>

@@ -1,0 +1,12 @@
+<h1>Transaction Details</h1>
+
+<p>Date Sold: <%= transaction.dateSold %></p>
+<p>Amount: <%= transaction.Amount %></p>
+<p>Employee: <%= transaction.Employee %></p>
+<p>Cash: <%= transaction.Cash %></p>
+
+<a href="/transactions/update/<%= transaction._id %>/">Edit</a>
+<form action="/transactions/delete/<%= transaction._id %>" method="POST">
+  <button type="submit">Delete</button>
+</form>
+<a href="/transactions">Back to All Transactions</a>

@@ -1,0 +1,19 @@
+<h1>Weapon Ownership Details</h1>
+
+<h2>Weapon Serial Number: <%= weaponOwnership.weaponSerialNumber %></h2>
+<p>Owner's Name: <%= weaponOwnership.ownerName %></p>
+<p>Owner's ID Number: <%= weaponOwnership.ownerIdNumber %></p>
+<p>Fingerprint: <%= weaponOwnership.fingerprint %></p>
+
+<h3>Additional Files:</h3>
+<% if (weaponOwnership.additionalFiles && weaponOwnership.additionalFiles.length > 0) { %>
+  <ul>
+    <% weaponOwnership.additionalFiles.forEach((file) => { %>
+      <li><%= file.filePath %></li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No additional files.</p>
+<% } %>
+
+<a href="/weaponOwnerships">Back to All Weapon Ownerships</a>

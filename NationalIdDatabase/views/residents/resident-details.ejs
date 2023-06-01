@@ -1,0 +1,16 @@
+<h1>Resident Details</h1>
+
+<h2>Name: <%= resident.name %></h2>
+<p>Location: <%= resident.location %></p>
+<p>Phone Number: <%= resident.phoneNumber %></p>
+<p>ID Number: <%= resident.idNumber %></p>
+<p>Marital Status: <%= resident.maritalStatus %></p>
+<p>Job: <%= resident.job %></p>
+<p>Birthday: <%= resident.birthday %></p>
+<p>Emergency Call: <%= resident.emergencyCall %></p>
+<p>Nationality: <%= resident.nationality %></p>
+<p>Emergency Person Name: <%= resident.emergencyPersonName %></p>
+<p>Home Number: <%= resident.homeNumber %></p>
+
+<a href="/residents/edit/<%= resident._id %>">Edit</a>
+<a href="/residents/delete/<%= resident._id %>">Delete</a>

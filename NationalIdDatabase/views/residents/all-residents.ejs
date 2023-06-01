@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>All Residents</title>
+</head>
+<body>
+  <h1>All Residents</h1>
+  <a href="/residents/create">Create Resident</a> <!-- Added Create Resident link -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Phone Number</th>
+        <th>ID Number</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% residents.forEach((resident) => { %>
+        <tr>
+          <td><%= resident.name %></td>
+          <td><%= resident.location %></td>
+          <td><%= resident.phoneNumber %></td>
+          <td><%= resident.idNumber %></td>
+          <td>
+            <a href="/residents/view/<%= resident._id %>">View</a>
+            <a href="/residents/edit/<%= resident._id %>">Edit</a>
+            <a href="/residents/delete/<%= resident._id %>">Delete</a>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

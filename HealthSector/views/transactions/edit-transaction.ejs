@@ -1,0 +1,21 @@
+<h1>Edit Transaction</h1>
+
+<form action="/transactions/update/<%= transaction._id %>/" method="POST">
+  <label for="personId">Person ID:</label>
+  <input type="text" name="personId" id="personId" value="<%= transaction.personId %>" required>
+
+  <label for="dateSold">Date Sold:</label>
+  <input type="text" name="dateSold" id="dateSold" value="<%= transaction.dateSold %>" required>
+
+  <label for="amount">Amount:</label>
+  <input type="text" name="amount" id="amount" value="<%= transaction.Amount %>" required>
+
+  <label for="employeeId">Employee ID:</label>
+  <input type="text" name="employeeId" id="employeeId" value="<%= transaction.Employee %>" required>
+
+  <label for="cash">Cash:</label>
+  <input type="text" name="cash" id="cash" value="<%= transaction.Cash %>" required>
+
+  <button type="submit">Update</button>
+</form>
+<a href="/transactions/<%= transaction._id %>">Cancel</a>

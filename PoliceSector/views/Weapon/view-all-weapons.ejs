@@ -1,0 +1,22 @@
+<h1>All Weapons</h1>
+
+<% if (weapons && weapons.length > 0) { %>
+  <ul>
+    <% weapons.forEach((weapon) => { %>
+      <li>
+        <h3><%= weapon.weaponName %></h3>
+        <p>Amount: <%= weapon.weaponAmount %></p>
+        <p>Serial Number: <%= weapon.weaponSerialNumber %></p>
+        <a href="/weapons/<%= weapon._id %>">View Details</a>
+        <a href="/weapons/<%= weapon._id %>/update">Edit</a>
+        <form action="/weapons/<%= weapon._id %>/delete" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No weapons found.</p>
+<% } %>
+
+<a href="/weapons/create">Create New Weapon</a>

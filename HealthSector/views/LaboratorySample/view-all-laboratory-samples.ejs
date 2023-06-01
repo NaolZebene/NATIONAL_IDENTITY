@@ -1,0 +1,56 @@
+<% layout('boilerplate') %> 
+
+<div id="content-1">
+    <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Lab Requests</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div> -->
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                              <th>Card Number</th>
+                              <th>Process Name</th>
+                              <th>Test Result</th>
+                              <th>Reference Value</th>
+                              <th>Data Conducted</th>
+                              <th>Diagnosis Summary</th>
+                              <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <% if(data && data.length){ %>
+                            <tr>
+                            <% for(data of laboratorySamples){ %> 
+
+                              <td><%= data.cardNumber %></td>
+                              <td><%= data.processName %></td>
+                              <td><%= data.testResult %></td>
+                              <td><%= data.referenceValue %></td>
+                              <td><%= data.dataConducted %></td>
+                              <td><%= data.diagnosisSummary %></td>
+                                 <!-- <td> <a class="btn btn-outline-primary" href="/employees/<%= data._id %>">View</a></td> -->
+                                 <td><a class="btn btn-outline-warning" href="/laboratorySamples/create/<%= data._id %>/">Submit Result</a></td>
+                                 <td><form action="/laboratorySamples/<%= data._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this laboratory sample?')">
+                                  <button class="btn btn-danger" type="submit">Delete</button>
+                                </form></td>
+                                <% } %> 
+                            </tr>
+                          <% } %>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>

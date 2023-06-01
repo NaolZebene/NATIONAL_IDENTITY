@@ -1,0 +1,14 @@
+<h1>Employee Details</h1>
+
+<p>Name: <%= employee.name %></p>
+<p>Email: <%= employee.email %></p>
+<p>Fingerprint: <%= employee.fingerprint %></p>
+<p>ID Number: <%= employee.idNumber %></p>
+<p>Role: <%= employee.role %></p>
+
+<a href="/employees/<%= employee._id %>/update">Edit</a>
+<form action="/employees/<%= employee._id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+
+<a href="/employees">Back to Employees</a>

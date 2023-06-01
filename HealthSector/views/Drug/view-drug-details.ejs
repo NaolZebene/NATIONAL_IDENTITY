@@ -1,0 +1,14 @@
+<!-- view-drug-details.ejs -->
+
+<h1>Drug Details</h1>
+
+<p><strong>Drug Name:</strong> <%= drug.Drug_name %></p>
+<p><strong>Amount:</strong> <%= drug.amount %></p>
+<p><strong>Total Sold:</strong> <%= drug.Total_sold %></p>
+
+<div>
+  <a href="/drugs/update/<%= drug._id %>">Edit</a>
+  <form action="/drugs/delete/<%= drug._id %>/" method="POST" onsubmit="return confirm('Are you sure you want to delete this drug?')">
+    <button type="submit">Delete</button>
+  </form>
+</div>

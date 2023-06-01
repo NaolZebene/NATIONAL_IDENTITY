@@ -1,0 +1,38 @@
+<!-- update-crime.ejs -->
+
+<h1>Update Crime</h1>
+
+<form action="/crimes/<%= crime._id %>" method="POST" enctype="multipart/form-data">
+  <label for="fileNumber">File Number:</label>
+  <input type="text" id="fileNumber" name="fileNumber" value="<%= crime.fileNumber %>" required>
+
+  <label for="criminalName">Criminal Name:</label>
+  <input type="text" id="criminalName" name="criminalName" value="<%= crime.criminalName %>" required>
+
+  <label for="criminalIdNumber">Criminal ID Number:</label>
+  <input type="text" id="criminalIdNumber" name="criminalIdNumber" value="<%= crime.criminalIdNumber %>" required>
+
+  <label for="crimeCommittedPlace">Crime Committed Place:</label>
+  <input type="text" id="crimeCommittedPlace" name="crimeCommittedPlace" value="<%= crime.crimeCommittedPlace %>" required>
+
+  <label for="crimeDescription">Crime Description:</label>
+  <textarea id="crimeDescription" name="crimeDescription" required><%= crime.crimeDescription %></textarea>
+
+  <label for="crimeType">Crime Type:</label>
+  <input type="text" id="crimeType" name="crimeType" value="<%= crime.crimeType %>" required>
+
+  <label for="victimName">Victim Name:</label>
+  <input type="text" id="victimName" name="victimName" value="<%= crime.victimName %>">
+
+  <label for="victimId">Victim ID:</label>
+  <input type="text" id="victimId" name="victimId" value="<%= crime.victimId %>">
+
+  <label for="fingerPrint">Finger Print:</label>
+  <input type="text" id="fingerPrint" name="fingerPrint" value="<%= crime.fingerPrint %>">
+
+  <label for="additionalFiles">Additional Files:</label>
+  <input type="file" id="additionalFiles" name="additionalFiles" multiple>
+
+  <button type="submit">Update</button>
+</form>
+    

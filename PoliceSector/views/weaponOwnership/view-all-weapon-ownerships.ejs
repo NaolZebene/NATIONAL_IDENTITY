@@ -1,0 +1,22 @@
+<h1>All Weapon Ownerships</h1>
+
+<% if (weaponOwnerships && weaponOwnerships.length > 0) { %>
+  <ul>
+    <% weaponOwnerships.forEach((weaponOwnership) => { %>
+      <li>
+        <h3>Weapon Serial Number: <%= weaponOwnership.weaponSerialNumber %></h3>
+        <p>Owner's Name: <%= weaponOwnership.ownerName %></p>
+        <p>Owner's ID Number: <%= weaponOwnership.ownerIdNumber %></p>
+        <a href="/weaponOwnerships/<%= weaponOwnership._id %>">View Details</a>
+        <a href="/weaponOwnerships/<%= weaponOwnership._id %>/edit">Edit</a>
+        <form action="/weaponOwnerships/<%= weaponOwnership._id %>/delete" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No weapon ownerships found.</p>
+<% } %>
+
+<a href="/weaponOwnerships/create">Create Weapon Ownership</a>

@@ -1,0 +1,53 @@
+<% layout('boilerplate') %> 
+
+<div id="content-1">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4"> Referral </h3>
+        <div class="card shadow">
+            <!-- <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Employees  Info</p>
+            </div> -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 text-nowrap">
+                        <a class="btn btn-outline-primary" href="/drugs/create">Create New</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                              <th>Drug Name</th>
+                              <th>Amount</th>
+                              <th>Total Sold</th>
+                              <th>Total Income</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <% for(data of drugs){ %>
+                              <td><%= data.Drug_name %></td>
+                              <td><%= data.amount %></td>
+                              <td><%= data.Total_sold %></td>
+                              <td><%= data.TotalIncome %></td>
+                              
+                              <td><a class="btn btn-outline-warning" href="/drugs/update/<%= data._id %>">Edit</a></td>
+                               <td><form action="/drugs/delete/<%= data._id %>/" method="post">
+                                 <button class="btn btn-outline-danger" type="submit">delete</button>
+                                </form></td>
+
+                            </tr>
+                          
+                            <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
