@@ -42,78 +42,109 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+            <% if(currentUser.role == "admin"){ %>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+                <% } %>
+            <% if(currentUser.role == "centralAdmin") {%>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+            <% } %>
 
-    
+            <% if(currentUser.role == "admin"){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/employees">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Employees</span></a>
             </li>
-
+            <% } %>
             <!-- Nav Item - Utilities Collapse Menu -->
+            <% if(currentUser.role == 'card' || currentUser.role == 'doctor'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/requests">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Requests</span></a>
             </li>
+            <% } %>
 
+            <% if(currentUser.role == 'admin' || currentUser.role == 'centralAdmin'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Stats</span></a>
             </li>
+            <% } %>
 
+            <% if(currentUser.role == 'card' || currentUser.role == 'centralAdmin'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/referrals">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Referrals</span></a>
             </li>
+            <% } %>
 
+            <% if(currentUser.role == 'lab_tech'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/laboratorySamples">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Lab Requests</span></a>
             </li>
+            <% } %>
 
+            <% if(currentUser.role == 'ctscan'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/requests/ctScanResult">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Ct Scan Requests</span></a>
             </li>
+            <% } %>
 
+            <% if(currentUser.role == 'ultrasound'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/requests/ultraSound">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Ultrasound Requests</span></a>
             </li>
+            <% } %>
 
+            <% if(currentUser.role == 'xray'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/requests/x-ray">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Xray Requests</span></a>
             </li>
+            <% } %>
 
+            <% if(currentUser.role == 'pharmacist'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/drugs">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Drugs</span></a>
             </li>
+            <% } %>
+
+            <% if(currentUser.role == 'pharmacist'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/transactions">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Transactions</span></a>
             </li>
-            
+            <% } %>
+
+            <% if(currentUser.role == 'centralAdmin'){ %>
             <li class="nav-item">
                 <a class="nav-link" href="/subsectors">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Subsectors</span></a>
             </li>
+            <% } %>
+
         </ul>
         <!-- End of Sidebar -->
 

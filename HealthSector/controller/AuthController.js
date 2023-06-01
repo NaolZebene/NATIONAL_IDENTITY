@@ -25,9 +25,30 @@ exports.login = async (req, res) => {
 
     // Store employee data in session
     req.session.user = employee;
-    
 
-    res.redirect('/dashboard');
+    if(employee.role == "admin" || employee.role == "centralAdmin"){
+       return res.redirect('/dashboard');
+    }
+    if(employee.role == 'card' || employee.role == "doctor"){
+      return res.redirect('/requests');
+    }
+    if(employee.role == 'ctscan'){
+      return res.redirect('/requests/ctScanResult');
+    }
+    if(employee.role == 'ultrasound'){
+      return res.redirect('/requests/ultraSound');
+    }
+    if(employee.role == 'xray'){
+      return res.redirect('/requests/x-ray');
+    }
+    if(employee.role == "pharmacist"){
+      return res.redirect("/drugs")
+    }
+
+    if(employee.role == "lab_tech"){
+      return res.redirect("/laboratorySamples")
+    }
+    
   } catch (error) {
     console.error(error);
     res.render('error', { message: 'Server Error' });
@@ -63,6 +84,7 @@ exports.changePassword = async (req, res) => {
     employee.password = hashedPassword;
     await employee.save();
 
+   
     res.redirect('/dashboard');
   } catch (error) {
     console.error(error);

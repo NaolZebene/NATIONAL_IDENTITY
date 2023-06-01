@@ -6,6 +6,8 @@ const path = require("path")
 const session = require("express-session")
 const {checkUser} = require('./utils/seed')
 const ejsMate = require("ejs-mate")
+const {isLoggedIn} = require("./utils/isLoggedIn")
+const {authorize} = require("./utils/Authorization")
 
 
 mongoose.connect("mongodb://127.0.0.1/HealthSector", {useUnifiedTopology:true, useNewUrlParser:true}).then(()=>{
@@ -42,7 +44,15 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 
-app.get("/dashboard", function(req, res){
+app.use(function (req, res, next) {
+  // res.locals.success = req.flash("success");
+  // res.locals.error = req.flash("error");
+  res.locals.currentUser = req.session.user;
+  // res.locals.carts = req.session.carts;
+  next();
+});
+
+app.get("/dashboard",isLoggedIn,authorize(["admin", "centralAdmin"]), function(req, res){
   res.render("index")
 })
 

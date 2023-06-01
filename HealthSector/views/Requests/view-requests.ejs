@@ -10,9 +10,11 @@
             </div> -->
             <div class="card-body">
                 <div class="row">
+                    <% if(currentUser.role == 'card'){ %>
                     <div class="col-md-6 text-nowrap">
                         <a class="btn btn-outline-primary" href="/requests/create">Create New</a>
                     </div>
+                    <% } %>
                     <div class="col-md-6">
                         <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
                     </div>

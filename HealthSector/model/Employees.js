@@ -30,7 +30,7 @@ const employeeSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin',"card", 'manager', 'employee', 'lab_tech', 'doctor', "pharmacist","centralAdmin"],
+    enum: ['admin',"card", 'lab_tech',"ctscan","ultrasound","xray", 'doctor', "pharmacist","centralAdmin"],
     required: true
   }
 });
