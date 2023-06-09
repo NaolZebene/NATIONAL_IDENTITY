@@ -17,9 +17,10 @@ module.exports.createCrime = async (req, res) => {
       crimeDescription,
       crimeType,
       victimName,
-      victimId
+      victimId,
+      sector_reg:req.session.user.sector_id
     });
-
+    console.log(req.body)
     if (req.files && req.files.length > 0) {
       crime.additionalFiles = req.files.map(file => ({ file_path: file.path }));
     }
@@ -128,7 +129,7 @@ module.exports.viewDetails = async (req, res) => {
 // View all crimes
 module.exports.viewAllCrimes = async (req, res) => {
   try {
-    const crimes = await Crime.find();
+    const crimes = await Crime.find({sector_reg:req.session.user.sector_id});
     res.render('Crime/view-all-crimes', { crimes });
   } catch (error) {
     console.error(error);

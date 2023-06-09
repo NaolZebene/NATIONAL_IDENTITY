@@ -1,5 +1,8 @@
 const bcrypt = require('bcrypt');
+
 const Subsector = require('../model/Subsector');
+
+const Employee = require("../model/Employee")
 
 // Render the create form
 exports.renderCreateForm = (req, res) => {
@@ -9,7 +12,7 @@ exports.renderCreateForm = (req, res) => {
 // Create a new subsector
 exports.createSubsector = async (req, res) => {
   try {
-    const { subsectorName, location, username } = req.body;
+    const { subsectorName, location, username, email } = req.body;
     const password = '123456'; // Default password
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -21,7 +24,16 @@ exports.createSubsector = async (req, res) => {
       password: hashedPassword
     });
 
+    const adminAccount = new Employee({
+      fullName:subsectorName,
+      role:"admin",
+      password:hashedPassword,
+      email,
+      sector_id:subsector._id
+    })
+
     await subsector.save();
+    await adminAccount.save();
     res.redirect('/subsector');
   } catch (error) {
     console.error(error);

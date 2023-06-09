@@ -1,25 +1,25 @@
-<h1>Update Weapon Ownership</h1>
+<% layout('boilerplate') %>
 
-<form action="/weaponOwnerships/<%= weaponOwnership._id %>/update" method="POST" enctype="multipart/form-data">
-  <div>
-    <label for="weaponSerialNumber">Weapon Serial Number</label>
-    <input type="text" id="weaponSerialNumber" name="weaponSerialNumber" value="<%= weaponOwnership.weaponSerialNumber %>" required>
-  </div>
-  <div>
-    <label for="ownerName">Owner's Name</label>
-    <input type="text" id="ownerName" name="ownerName" value="<%= weaponOwnership.ownerName %>" required>
-  </div>
-  <div>
-    <label for="ownerIdNumber">Owner's ID Number</label>
-    <input type="text" id="ownerIdNumber" name="ownerIdNumber" value="<%= weaponOwnership.ownerIdNumber %>" required>
-  </div>
-  <div>
-    <label for="fingerprint">Fingerprint</label>
-    <input type="text" id="fingerprint" name="fingerprint" value="<%= weaponOwnership.fingerprint %>">
-  </div>
-  <div>
-    <label for="additionalFiles">Additional Files</label>
-    <input type="file" id="additionalFiles" name="additionalFiles" multiple>
-  </div>
-  <button type="submit">Update Weapon Ownership</button>
+<div class="container-fluid">
+  <h3 class="text-dark mb-1">Update</h3>
+</div>
+
+<form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/weaponOwnerships/<%= weaponOwnership._id %>/update" method="post" enctype="multipart/form-data">
+  <input class="form-control" name="weaponSerialNumber" type="text" placeholder="Weapon Serial Number" value="<%= weaponOwnership.weaponSerialNumber %>" required>
+
+  <input class="form-control" name="ownerName" type="text" placeholder="Owner's Name" style="margin-top: 39px;" value="<%= weaponOwnership.ownerName %>" required>
+
+  <input class="form-control" name="ownerIdNumber" type="text" placeholder="Owner's ID Number" style="margin-top: 39px;" value="<%= weaponOwnership.ownerIdNumber %>" required>
+
+  <input class="form-control" name="fingerprint" type="text" placeholder="Fingerprint" style="margin-top: 39px;" value="<%= weaponOwnership.fingerprint %>">
+
+  <input class="form-control" name="additionalFiles" type="file"  style="margin-top: 39px;" multiple>
+
+  <button  class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;EDIT</button>
 </form>
+
+</div>
+</div>
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>

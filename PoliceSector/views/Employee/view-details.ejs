@@ -1,14 +1,29 @@
-<h1>Employee Details</h1>
 
-<p>Name: <%= employee.name %></p>
-<p>Email: <%= employee.email %></p>
-<p>Fingerprint: <%= employee.fingerprint %></p>
-<p>ID Number: <%= employee.idNumber %></p>
-<p>Role: <%= employee.role %></p>
+<% layout('boilerplate') %>
 
-<a href="/employees/<%= employee._id %>/update">Edit</a>
-<form action="/employees/<%= employee._id %>/delete" method="POST">
-  <button type="submit">Delete</button>
-</form>
 
-<a href="/employees">Back to Employees</a>
+<div class="card shadow mb-4">
+  <!-- Card Header - Accordion -->
+  <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+      role="button" aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">General Information</h6>
+  </a>
+  <!-- Card Content - Collapse -->
+
+ 
+  <div class="collapse show" id="collapseCardExample">
+    <ul class="list-group">
+      <li class="list-group-item">Name: <%= employee.name %></li>
+      <li class="list-group-item">Email: <%= employee.email %></li>
+      <li class="list-group-item">Fingerprint: <%= employee.fingerprint %></li>
+      <li class="list-group-item">ID Number:<%= employee.idNumber %></li>
+      <li class="list-group-item">Role: <%= employee.role %></li>
+    </ul>
+    <div class="d-flex p-3">
+    <a class="btn btn-outline-primary mr-3" href="/employees/<%= employee._id %>/update">Edit</a>
+    <form action="/employees/<%= employee._id %>/delete" method="POST">
+      <button class="btn btn-outline-danger" type="submit">Delete</button>
+    </form>
+    </div>
+  </div>
+</div>

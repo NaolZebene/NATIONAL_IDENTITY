@@ -4,11 +4,23 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path')
 const session = require("express-session");
+const ejsMate = require("ejs-mate")
+const {isLoggedIn} = require("./util/isLoggedIn")
+const {checkUser} = require("./util/seed")
 
 mongoose.connect("mongodb://127.0.0.1/AddisAbabaRegistration", { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
     console.log("Database Connected Successfully");
 })
 
+
+checkUser().then(()=>{
+    console.log("User exists")
+}).catch((e)=>{
+    console.log("error while creating super admin");
+    console.log(e)
+})
+
+app.engine("ejs", ejsMate)
 app.set("view engine", 'ejs');
 app.set("/views",path.join(__dirname,"views"))
 
@@ -23,6 +35,17 @@ app.use(
       },
     })
 );
+
+
+app.use(express.static(path.join(__dirname, "public")))
+app.use(function (req, res, next) {
+    // res.locals.success = req.flash("success");
+    // res.locals.error = req.flash("error");
+    res.locals.currentUser = req.session.role;
+    res.locals.user = req.session.user
+    next();
+  });
+
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 
@@ -36,10 +59,9 @@ app.use("", employeeRouter);
 app.use("", authRouter);
 
 
-app.get("/", function(req, res){
-    res.json({
-        msg:"Welcome to Addis Ababa Registration Sector Portal"
-    })
+
+app.get("/",isLoggedIn, function(req, res){
+   return res.render("index")
 })
 
 

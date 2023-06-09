@@ -2,37 +2,79 @@
 
 <h1>Update Crime</h1>
 
-<form action="/crimes/<%= crime._id %>" method="POST" enctype="multipart/form-data">
+<form action="" method="POST" enctype="multipart/form-data">
   <label for="fileNumber">File Number:</label>
-  <input type="text" id="fileNumber" name="fileNumber" value="<%= crime.fileNumber %>" required>
+  <input type="text" id="fileNumber" name="fileNumber"  required>
 
   <label for="criminalName">Criminal Name:</label>
-  <input type="text" id="criminalName" name="criminalName" value="<%= crime.criminalName %>" required>
+  <input type="text" id="criminalName" name="criminalName"  required>
 
   <label for="criminalIdNumber">Criminal ID Number:</label>
-  <input type="text" id="criminalIdNumber" name="criminalIdNumber" value="<%= crime.criminalIdNumber %>" required>
+  <input type="text" id="" name="criminalIdNumber" >
 
   <label for="crimeCommittedPlace">Crime Committed Place:</label>
-  <input type="text" id="crimeCommittedPlace" name="crimeCommittedPlace" value="<%= crime.crimeCommittedPlace %>" required>
+  <input type="text" id="crimeCommittedPlace" name="crimeCommittedPlace" >
 
   <label for="crimeDescription">Crime Description:</label>
-  <textarea id="crimeDescription" name="crimeDescription" required><%= crime.crimeDescription %></textarea>
+  <textarea id="crimeDescription" name="crimeDescription" required></textarea>
 
   <label for="crimeType">Crime Type:</label>
-  <input type="text" id="crimeType" name="crimeType" value="<%= crime.crimeType %>" required>
+  <input type="text" id="crimeType" name="crimeType" >
 
   <label for="victimName">Victim Name:</label>
-  <input type="text" id="victimName" name="victimName" value="<%= crime.victimName %>">
+  <input type="text" id="victimName" name="victimName" ">
 
   <label for="victimId">Victim ID:</label>
-  <input type="text" id="victimId" name="victimId" value="<%= crime.victimId %>">
+  <input type="text" id="victimId" name="victimId" >
 
   <label for="fingerPrint">Finger Print:</label>
-  <input type="text" id="fingerPrint" name="fingerPrint" value="<%= crime.fingerPrint %>">
+  <input type="text" id="fingerPrint" name="fingerPrint" >
 
   <label for="additionalFiles">Additional Files:</label>
   <input type="file" id="additionalFiles" name="additionalFiles" multiple>
 
   <button type="submit">Update</button>
 </form>
-    
+
+
+
+
+
+
+<% layout('boilerplate') %>
+
+<form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/crimes/<%= crime._id %>" method="post" novalidate>
+  <input class="form-control" name="fileNumber" type="text" value="<%= crime.fileNumber %>"  placeholder="File Number" required>
+
+  <input class="form-control" name="criminalName" type="text" placeholder="Criminal Name" value="<%= crime.criminalName %>" style="margin-top: 39px;" required>
+
+
+  <input class="form-control" name="crimeCommittedPlace" type="text" placeholder="Crime Committed Place" style="margin-top: 39px;" value="<%= crime.crimeCommittedPlace %>" required>
+
+  <input class="form-control" name="criminalIdNumber" type="text" placeholder="Crime Committed Place" style="margin-top: 39px;" value="<%= crime.criminalIdNumber %>" required>
+
+
+  <input class="form-control" name="crimeType" type="text" placeholder="Crime Type" style="margin-top: 39px;" value="<%= crime.crimeType %>" required>
+
+  <input class="form-control" name="victimName" type="text" value="<%= crime.victimName %>" placeholder="Victim Name" style="margin-top: 39px;"  >
+
+  <input class="form-control" name="victimId" type="text" placeholder="Victim ID" style="margin-top: 39px;" value="<%= crime.victimId %>">
+
+  <input class="form-control" name="fingerPrint" type="text" placeholder="Finger Print" style="margin-top: 39px;" value="<%= crime.fingerPrint %>">
+
+  <input class="form-control" name="additionalFiles" type="file" placeholder="Additional Files" style="margin-top: 39px;" multiple>
+
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Crime Description</label>
+    <textarea class="form-control" name="crimeDescription" id="exampleFormControlTextarea1" rows="3" required><%= crime.crimeDescription %></textarea>
+  </div>
+
+  <button class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;ADD</button>
+</form>
+
+</div>
+</div>\
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>

@@ -26,24 +26,24 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 // Render the create form
-router.get('/crimes/create',isLoggedIn,authorize(["office_worker","admin"]), crimeController.renderCreateForm);
+router.get('/crimes/create',isLoggedIn,authorize(["employee","admin"]), crimeController.renderCreateForm);
 
 // Create a new crime
-router.post('/crimes/create',isLoggedIn,authorize(["office_worker","admin"]), upload.array('additionalFiles'), crimeController.createCrime);
+router.post('/crimes/create',isLoggedIn,authorize(["employee","admin"]), upload.array('additionalFiles'), crimeController.createCrime);
 
 // Render the update form for a specific crime
-router.get('/crimes/:id/update',isLoggedIn,authorize(["office_worker","admin"]), crimeController.renderUpdateForm);
+router.get('/crimes/:id/update',isLoggedIn,authorize(["employee","admin"]), crimeController.renderUpdateForm);
 
 // Update a specific crime
-router.post('/crimes/:id',isLoggedIn,authorize(["office_worker","admin"]), upload.array('additionalFiles'), crimeController.updateCrime);
+router.post('/crimes/:id',isLoggedIn,authorize(["employee","admin"]), upload.array('additionalFiles'), crimeController.updateCrime);
 
 // Delete a specific crime
-router.post('/crimes/:id/delete',isLoggedIn,authorize(["office_worker","admin"]), crimeController.deleteCrime);
+router.post('/crimes/:id/delete',isLoggedIn,authorize(["employee","admin"]), crimeController.deleteCrime);
 
 // View details of a specific crime
-router.get('/crimes/:id',isLoggedIn,authorize(["office_worker","admin"]), crimeController.viewDetails);
+router.get('/crimes/:id',isLoggedIn,authorize(["employee","admin"]), crimeController.viewDetails);
 
 // View all crimes
-router.get('/crimes',isLoggedIn,authorize(["office_worker","admin"]), crimeController.viewAllCrimes);
+router.get('/crimes',isLoggedIn,authorize(["employee","admin"]), crimeController.viewAllCrimes);
 
 module.exports = router;

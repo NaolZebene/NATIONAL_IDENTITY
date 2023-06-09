@@ -15,6 +15,7 @@ exports.createWeaponOwnership = async (req, res) => {
       ownerName,
       ownerIdNumber,
       fingerprint,
+      sector_created:req.session.user.sector_id
     });
 
     if (req.files && req.files.length > 0) {
@@ -121,7 +122,7 @@ exports.viewDetails = async (req, res) => {
 // View all weapon ownerships
 exports.viewAllWeaponOwnerships = async (req, res) => {
   try {
-    const weaponOwnerships = await WeaponOwnership.find();
+    const weaponOwnerships = await WeaponOwnership.find({sector_created:req.session.user.sector_id});
     res.render('weaponOwnership/view-all-weapon-ownerships', { weaponOwnerships });
   } catch (error) {
     console.error(error);

@@ -1,17 +1,24 @@
-<h1>Create Subsector</h1>
+<% layout('boilerplate') %>
 
-<form action="/subsector/create" method="POST">
-  <div>
-    <label for="subsectorName">Subsector Name</label>
-    <input type="text" id="subsectorName" name="subsectorName" required>
-  </div>
-  <div>
-    <label for="location">Location</label>
-    <input type="text" id="location" name="location" required>
-  </div>
-  <div>
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required>
-  </div>
-  <button type="submit">Create</button>
+<div class="container-fluid">
+  <h3 class="text-dark mb-1">Add New Subsector</h3>
+</div>
+
+<form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/subsector/create" method="post" novalidate>
+
+  <input class="form-control" name="subsectorName" type="text" placeholder="Subsector Name" required>
+
+  <input class="form-control" name="location" type="text" placeholder="Location" style="margin-top: 39px;" required>
+
+  <input class="form-control" name="username" type="text" placeholder="Username" style="margin-top: 39px;" required>
+
+  <input class="form-control" name="email" type="text" placeholder="example@gmail.com" style="margin-top: 39px;" required>
+
+  <button  class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;ADD</button>
 </form>
+
+</div>
+</div>
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>

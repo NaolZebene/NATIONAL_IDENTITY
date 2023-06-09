@@ -14,6 +14,7 @@ exports.createWeapon = async (req, res) => {
       weaponName,
       weaponAmount,
       weaponSerialNumber,
+      sector_to:req.session.user.sector_id
     });
 
     if (req.files && req.files.length > 0) {
@@ -119,7 +120,7 @@ exports.viewDetails = async (req, res) => {
 // View all weapons
 exports.viewAllWeapons = async (req, res) => {
   try {
-    const weapons = await Weapon.find();
+    const weapons = await Weapon.find({sector_to:req.session.user.sector_id});
     res.render('Weapon/view-all-weapons', { weapons });
   } catch (error) {
     console.error(error);

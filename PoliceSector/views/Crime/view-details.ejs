@@ -1,26 +1,38 @@
-<!-- view-details.ejs -->
+<% layout('boilerplate') %>
+<div class="card shadow mb-4">
+  <!-- Card Header - Accordion -->
+  <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+      role="button" aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">General Information</h6>
+  </a>
+  <!-- Card Content - Collapse -->
 
-<h1>Crime Details</h1>
-
-<h3>File Number: <%= crime.fileNumber %></h3>
-<p>Criminal Name: <%= crime.criminalName %></p>
-<p>Criminal ID Number: <%= crime.criminalIdNumber %></p>
-<p>Crime Committed Place: <%= crime.crimeCommittedPlace %></p>
-<p>Crime Description: <%= crime.crimeDescription %></p>
-<p>Crime Type: <%= crime.crimeType %></p>
-<p>Victim Name: <%= crime.victimName %></p>
-<p>Victim ID: <%= crime.victimId %></p>
-<p>Finger Print: <%= crime.fingerPrint %></p>
-
-<h3>Additional Files:</h3>
-<% if (crime.additionalFiles && crime.additionalFiles.length > 0) { %>
-  <ul>
-    <% for (let i = 0; i < crime.additionalFiles.length; i++) { %>
-      <li><%= crime.additionalFiles[i].file_path %></li>
-    <% } %>
-  </ul>
-<% } else { %>
-  <p>No additional files available.</p>
-<% } %>
-
-<a href="/crimes">Back to All Crimes</a>
+ 
+  <div class="collapse show" id="collapseCardExample">
+    <ul class="list-group">
+      <li class="list-group-item">File Number: <%= crime.fileNumber %></li>
+      <li class="list-group-item">Criminal Name: <%= crime.criminalName %></li>
+      <li class="list-group-item">Criminal ID Number: <%= crime.criminalIdNumber %></li>
+      <li class="list-group-item">Crime Committed Place: <%= crime.crimeCommittedPlace %></li>
+      <li class="list-group-item">Crime Type: <%= crime.crimeType %></li>
+      <li class="list-group-item">Victim Name: <%= crime.victimName %></li>
+      <li class="list-group-item">Victim ID: <%= crime.victimId %></li>
+      <li class="list-group-item">Finger Print: <%= crime.fingerPrint %></li>
+      <li class="list-group-item">Crime Description: <%= crime.crimeDescription %></li>
+      <li class="list-group-item">Crime Description: <%= crime.crimeDescription %></li>
+      <% if (crime.additionalFiles && crime.additionalFiles.length > 0) { %>
+          <% for (let i = 0; i < crime.additionalFiles.length; i++) { %>
+            <li class="list-group-item">file : <%= crime.additionalFiles[i].file_path %></li>
+          <% } %>
+      <% } else { %>
+        <p class="list-group-item" >No additional files available.</p>
+      <% } %>
+    </ul>
+    <div class="d-flex p-3">
+    <a class="btn btn-outline-primary mr-3" href="/crimes/<%= crime._id %>/update">Edit</a>
+    <form action="/crimes/<%= crime._id %>/delete" method="POST">
+      <button class="btn btn-outline-danger" type="submit">Delete</button>
+    </form>
+    </div>
+  </div>
+</div>

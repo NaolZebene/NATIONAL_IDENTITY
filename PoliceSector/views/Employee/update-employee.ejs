@@ -1,26 +1,34 @@
-<h1>Edit Employee</h1>
 
-<form action="/employees/<%= employee._id %>/update" method="POST">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" value="<%= employee.name %>" required>
+<% layout('boilerplate') %> 
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" value="<%= employee.email %>" required>
+    <div class="container-fluid">
+        <h3 class="text-dark mb-1">Add Employee </h3>
+    </div>
 
-  <label for="fingerprint">Fingerprint:</label>
-  <input type="text" id="fingerprint" name="fingerprint" value="<%= employee.fingerprint %>" required>
 
-  <label for="idNumber">ID Number:</label>
-  <input type="text" id="idNumber" name="idNumber" value="<%= employee.idNumber %>" required>
 
-  <label for="role">Role:</label>
-  <select id="role" name="role" required>
-    <option value="admin" <%= (employee.role === 'admin') ? 'selected' : '' %>>Admin</option>
-    <option value="manager" <%= (employee.role === 'manager') ? 'selected' : '' %>>Manager</option>
-    <option value="employee" <%= (employee.role === 'employee') ? 'selected' : '' %>>Employee</option>
-  </select>
+    <form action="/employees/<%= employee._id %>/update" class="shadow-sm validated-form" style="margin: 38px;margin-top: 29px;padding: 26px;" method="post" novalidate>
 
-  <button type="submit">Update</button>
-</form>
+        <input class="form-control" type="text" placeholder="Employee Name" value="<%= employee.name %>" name="name" required>
 
-<a href="/employees">Back to Employees</a>
+        <input class="form-control" type="text" style="margin-top: 39px;" placeholder="Id Number" value="<%= employee.idNumber %>" name="idNumber" required>
+
+        <input class="form-control" type="text" placeholder="Email" style="margin-top: 39px;" value="<%= employee.email %>" name="email" required>
+
+        <input class="form-control" type="text" placeholder="Phone Number" style="margin-top: 39px;" value="<%= employee.fingerprint %>" name="fingerprint" required>
+
+        <select class="form-control" style="margin-top: 36px;" name="role" required>
+          <option value="admin" <%= (employee.role === 'admin') ? 'selected' : '' %>>Admin</option>
+          <option value="manager" <%= (employee.role === 'manager') ? 'selected' : '' %>>Manager</option>
+          <option value="employee" <%= (employee.role === 'employee') ? 'selected' : '' %>>Employee</option>
+          <option value="employee" <%= (employee.role === 'inventory') ? 'selected' : '' %>>Inventory</option>
+         </select>
+
+        <button class="btn btn-primary" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;Edit</button>
+    </form>
+
+    </div>
+    </div>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+   </div>
+

@@ -1,18 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>All Employees</title>
-</head>
-<body>
-  <h1>All Employees</h1>
+<% layout('boilerplate') %> 
 
-  <ul>
-    <% employees.forEach(function(employee) { %>
-      <li><a href="/employees/<%= employee._id %>"><%= employee.fullName %></a></li>
-    <% }); %>
-  </ul>
+<div id="content-1">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4"> Employees </h3>
+        <div class="card shadow">
+            <!-- <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Employees  Info</p>
+            </div> -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 text-nowrap">
+                        <a class="btn btn-outline-primary" href="/employees/create">Create New</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                              <th>Id Number</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <% for(data of employees){ %>
+                              <td><%= data.idNumber %></td>
+                              <td><%= data.name %></td>
+                              <td><%= data.email %></td>
+                              <td><%= data.role %></td>
 
-  <a href="/employees/create">Create New Employee</a>
-</body>
-</html>
+                              <td>
+                                <a class="btn btn-outline-warning" href="/employees/<%= data._id %>/edit">Edit</a>
+                              </td>
+                              <td>
+                                <form action="/employees/delete/<%= data._id %>/" method="post">
+                                  <button class="btn btn-outline-danger">Delete</button>
+                                </form>
+                              </td>
+
+                            </tr>
+                          
+                            <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>

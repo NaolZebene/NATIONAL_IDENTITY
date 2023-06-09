@@ -31,6 +31,10 @@ const crimeSchema = new mongoose.Schema({
   victimId: {
     type: String
   },
+  sector_reg:{
+    type:mongoose.Types.ObjectId, 
+    ref:"Subsector"
+  },
   additionalFiles: [{
     file_path: {
       type: String

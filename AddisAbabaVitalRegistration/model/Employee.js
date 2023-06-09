@@ -7,11 +7,11 @@ const employeeSchema = new mongoose.Schema({
   },
   idNumber: {
     type: String,
-    required: true
+    required: false
   },
   role: {
     type: String,
-    enum:["admin", "manager", "employee"]
+    enum:["admin", "centralAdmin", "employee"]
  
   },
   password: {
@@ -23,6 +23,12 @@ const employeeSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+
+  sector_id:{
+    type:mongoose.Types.ObjectId, 
+    ref:"Subsector"
+  },
+  
   personalInformation: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Person'

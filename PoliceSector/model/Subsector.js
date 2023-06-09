@@ -17,6 +17,10 @@ const subsectorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email:{
+    type:String, 
+    required:true
+  }
 });
 
 const Subsector = mongoose.model('Subsector', subsectorSchema);

@@ -1,22 +1,47 @@
-<h1>All Weapon Ownerships</h1>
+<% layout('boilerplate') %> 
 
-<% if (weaponOwnerships && weaponOwnerships.length > 0) { %>
-  <ul>
-    <% weaponOwnerships.forEach((weaponOwnership) => { %>
-      <li>
-        <h3>Weapon Serial Number: <%= weaponOwnership.weaponSerialNumber %></h3>
-        <p>Owner's Name: <%= weaponOwnership.ownerName %></p>
-        <p>Owner's ID Number: <%= weaponOwnership.ownerIdNumber %></p>
-        <a href="/weaponOwnerships/<%= weaponOwnership._id %>">View Details</a>
-        <a href="/weaponOwnerships/<%= weaponOwnership._id %>/edit">Edit</a>
-        <form action="/weaponOwnerships/<%= weaponOwnership._id %>/delete" method="POST">
-          <button type="submit">Delete</button>
-        </form>
-      </li>
-    <% }); %>
-  </ul>
-<% } else { %>
-  <p>No weapon ownerships found.</p>
-<% } %>
+<div id="content-1">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4"> Referral </h3>
+        <div class="card shadow">
+            <!-- <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Employees  Info</p>
+            </div> -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 text-nowrap">
+                        <a class="btn btn-outline-primary" href="/weaponOwnerships/create">Create New Weapon Ownership Form</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                              <th>Weapon Serial Number</th>
+                              <th>Owner's Name</th>
+                              <th>Owner's ID Number</th>                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <% for(data of weaponOwnerships){ %>
+                              <td><%= data.weaponSerialNumber %></td>
+                              <td><%= data.ownerName %></td>
+                              <td><%= data.ownerIdNumber %></td>
+                              <td><a class="btn btn-outline-warning" href="/weaponOwnerships/<%= data._id %>">Details</a></td>
+                            </tr>
+                          
+                            <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 
-<a href="/weaponOwnerships/create">Create Weapon Ownership</a>

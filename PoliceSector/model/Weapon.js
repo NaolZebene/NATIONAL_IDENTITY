@@ -17,7 +17,11 @@ const weaponSchema = new mongoose.Schema({
     filePath: {
       type: String
     }
-  }]
+  }], 
+  sector_to:{
+    type:mongoose.Types.ObjectId, 
+    ref:"Subsector"
+  }
 });
 
 const Weapon = mongoose.model('Weapon', weaponSchema);

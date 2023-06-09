@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
     }
 
     // Store the user's ID in the session
-    req.session.userId = employee._id;
+    req.session.user = employee;
     req.session.role = employee.role;
 
     res.redirect('/');

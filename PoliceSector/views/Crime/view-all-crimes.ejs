@@ -1,25 +1,55 @@
-<!-- view-all-crimes.ejs -->
+<% layout('boilerplate') %> 
 
-<h1>All Crimes</h1>
+<div id="content-1">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4"> Referral </h3>
+        <div class="card shadow">
+            <!-- <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Employees  Info</p>
+            </div> -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 text-nowrap">
+                        <a class="btn btn-outline-primary" href="/crimes/create">Create New Crime</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                              <th>File Number</th>
+                              <th>Criminal Name</th>
+                              <th>Criminal ID Number</th>                            
+                              <th>Crime Type</th>
+                              <th>Victim Name</th>
+                              <th>Victim ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <% for(data of crimes){ %>
+                              <td><%= data.fileNumber %></td>
+                              <td><%= data.criminalName %></td>
+                              <td><%= data.criminalIdNumber %></td>
+                              <td><%= data.crimeType %></td>
+                              <td><%= data.victimName %></td>
+                              <td><%= data.victimId %></td>
+                              <td><a class="btn btn-outline-warning" href="/crimes/<%= data._id %>/">Details</a></td>
+                
+                              
 
-<a href="/crimes/create">Create New Crime</a>
-
-<ul>
-  <% crimes.forEach((crime) => { %>
-    <li>
-      <h3>File Number: <%= crime.fileNumber %></h3>
-      <p>Criminal Name: <%= crime.criminalName %></p>
-      <p>Criminal ID Number: <%= crime.criminalIdNumber %></p>
-      <p>Crime Committed Place: <%= crime.crimeCommittedPlace %></p>
-      <p>Crime Description: <%= crime.crimeDescription %></p>
-      <p>Crime Type: <%= crime.crimeType %></p>
-      <p>Victim Name: <%= crime.victimName %></p>
-      <p>Victim ID: <%= crime.victimId %></p>
-      <a href="/crimes/<%= crime._id %>">View Details</a>
-      <a href="/crimes/<%= crime._id %>/update">Update</a>
-      <form action="/crimes/<%= crime._id %>/delete" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-    </li>
-  <% }) %>
-</ul>
+                            </tr>
+                          
+                            <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>

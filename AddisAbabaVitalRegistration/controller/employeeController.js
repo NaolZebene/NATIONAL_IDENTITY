@@ -21,7 +21,8 @@ exports.createEmployee = async (req, res) => {
       idNumber,
       role,
       password: hashedPassword,
-      email
+      email,
+      sector_id:req.session.user.sector_id
     });
 
     // Save the employee to the database
@@ -57,7 +58,7 @@ exports.renderEmployeeDetails = async (req, res) => {
 exports.renderAllEmployees = async (req, res) => {
   try {
     // Fetch all employees from the database
-    const employees = await Employee.find();
+    const employees = await Employee.find({sector_id:req.session.user.sector_id});
 
     res.render('employee/view-all-employees', { employees });
   } catch (error) {

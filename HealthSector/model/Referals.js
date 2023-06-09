@@ -32,9 +32,20 @@ const referralSchema = new mongoose.Schema({
     enum: ['pending', 'done', 'active'],
     default: 'pending'
   },
+  requestSent:{
+    type:Boolean, 
+    default:true
+  },
   from:{
     type:mongoose.Types.ObjectId,
     ref:'Subsector'
+  },
+  emergencyCode: {
+    type:String, 
+    required:false
+  }, 
+  fingerprint:{
+    type:String
   }
 });
 

@@ -16,8 +16,7 @@ const employeeSchema = new mongoose.Schema({
   },
   idNumber: {
     type: String,
-    required: true,
-    unique: true
+    required: false,  
   },
   personalInformation: {
     type: mongoose.Schema.Types.ObjectId,
@@ -26,8 +25,12 @@ const employeeSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'manager', 'office_worker', "employee", "inventory"],
+    enum: ['admin',"centralAdmin", 'manager', 'office_worker', "employee", "inventory"],
     required: true
+  },
+  sector_id:{
+    type:mongoose.Types.ObjectId,
+    ref:"Subsector"
   },
   password: {
     type: String,

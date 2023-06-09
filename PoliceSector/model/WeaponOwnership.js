@@ -32,6 +32,10 @@ const weaponOwnershipSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Weapon',
   },
+  sector_created:{
+    type:mongoose.Types.ObjectId, 
+    ref:"Subsector"
+  }
 });
 
 const WeaponOwnership = mongoose.model('WeaponOwnership', weaponOwnershipSchema);

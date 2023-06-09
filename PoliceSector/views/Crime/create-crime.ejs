@@ -1,37 +1,35 @@
-<!-- create-crime.ejs -->
+<% layout('boilerplate') %>
 
-<h1>Create Crime</h1>
+<div class="container-fluid">
+  <h3 class="text-dark mb-1">Add New Crime</h3>
+</div>
 
-<form action="/crimes/create" method="POST" enctype="multipart/form-data">
-  <label for="fileNumber">File Number:</label>
-  <input type="text" id="fileNumber" name="fileNumber" required>
+<form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/crimes/create" method="post">
+  <input class="form-control" name="fileNumber" type="text" placeholder="File Number">
 
-  <label for="criminalName">Criminal Name:</label>
-  <input type="text" id="criminalName" name="criminalName" required>
+  <input class="form-control" name="criminalName" type="text" placeholder="Criminal Name" style="margin-top: 39px;">
 
-  <label for="criminalIdNumber">Criminal ID Number:</label>
-  <input type="text" id="criminalIdNumber" name="criminalIdNumber" required>
+  <input class="form-control" name="criminalIdNumber" type="text" placeholder="Criminal ID Number" style="margin-top: 39px;">
 
-  <label for="crimeCommittedPlace">Crime Committed Place:</label>
-  <input type="text" id="crimeCommittedPlace" name="crimeCommittedPlace" required>
+  <input class="form-control" name="crimeCommittedPlace" type="text" placeholder="Crime Committed Place" style="margin-top: 39px;">
 
-  <label for="crimeDescription">Crime Description:</label>
-  <textarea id="crimeDescription" name="crimeDescription" required></textarea>
 
-  <label for="crimeType">Crime Type:</label>
-  <input type="text" id="crimeType" name="crimeType" required>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Crime Description</label>
+    <textarea class="form-control" name="crimeDescription" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
 
-  <label for="victimName">Victim Name:</label>
-  <input type="text" id="victimName" name="victimName">
+  <input class="form-control" name="crimeType" type="text" placeholder="Crime Type" style="margin-top: 39px;">
+  <input class="form-control" name="victimName" type="text" placeholder="Victim Name" style="margin-top: 39px;">
+  <input class="form-control" name="victimId" type="text" placeholder="Victim ID" style="margin-top: 39px;">
+  <input class="form-control" name="fingerPrint" type="text" placeholder="Finger Print" style="margin-top: 39px;">
+  <input class="form-control" name="additionalFiles" type="file" placeholder="Additional Files" style="margin-top: 39px;" multiple>
 
-  <label for="victimId">Victim ID:</label>
-  <input type="text" id="victimId" name="victimId">
-
-  <label for="fingerPrint">Finger Print:</label>
-  <input type="text" id="fingerPrint" name="fingerPrint">
-
-  <label for="additionalFiles">Additional Files:</label>
-  <input type="file" id="additionalFiles" name="additionalFiles" multiple>
-
-  <button type="submit">Create</button>
+  <button class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;ADD</button>
 </form>
+
+</div>
+</div>\
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>

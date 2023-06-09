@@ -20,6 +20,7 @@ exports.createEmployee = async (req, res) => {
       fingerprint,
       idNumber,
       role,
+      sector_id:req.session.user.sector_id, 
       password: hashedPassword
     });
 
@@ -112,7 +113,7 @@ exports.viewDetails = async (req, res) => {
 // View all employees
 exports.viewAllEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find();
+    const employees = await Employee.find({sector_id:req.session.user.sector_id});
     res.render('Employee/view-all-employees', { employees });
   } catch (error) {
     console.error(error);

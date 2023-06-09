@@ -1,21 +1,52 @@
-<h1>All Subsectors</h1>
+<% layout('boilerplate') %> 
 
-<% if (subsectors && subsectors.length > 0) { %>
-  <ul>
-    <% subsectors.forEach((subsector) => { %>
-      <li>
-        <h3>Subsector Name: <%= subsector.subsectorName %></h3>
-        <p>Location: <%= subsector.location %></p>
-        <p>Username: <%= subsector.username %></p>
-        <a href="/subsectors/<%= subsector._id %>">View Details</a>
-        <form action="/subsectors/<%= subsector._id %>/delete" method="POST">
-          <button type="submit">Delete</button>
-        </form>
-      </li>
-    <% }); %>
-  </ul>
-<% } else { %>
-  <p>No subsectors found.</p>
-<% } %>
+<div id="content-1">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4"> Subsector </h3>
+        <div class="card shadow">
+            <!-- <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Employees  Info</p>
+            </div> -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 text-nowrap">
+                        <a class="btn btn-outline-primary" href="/subsectors/create">Add new subsector</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                              <th>Subsector Name</th>
+                              <th>Location</th>
+                              <th>Username</th>                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <% for(data of subsectors){ %>
+                              <td><%= data.subsectorName %></td>
+                              <td><%= data.location %></td>
+                              <td><%= data.username %></td>
+                              <td><a class="btn btn-outline-warning" href="/subsectors/<%= data._id %>/update">Edit</a></td>
+                              <td>
+                                <form action="/subsectors/<%= data._id %>/delete" method="POST">
+                                  <button class="btn btn-outline-danger" type="submit">Delete</button>
+                                </form>
+                              </td>
+                            </tr>
+                          
+                            <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 
-<a href="/subsectors/create">Create Subsector</a>

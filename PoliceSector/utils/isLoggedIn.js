@@ -1,9 +1,7 @@
 module.exports.isLoggedIn = (req, res, next) => {
-    if (req.session && req.session.userId) {
-      // User is logged in
+    if (req.session && req.session.user) {
       next();
     } else {
-      // User is not logged in
       res.redirect('/login');
     }
   };

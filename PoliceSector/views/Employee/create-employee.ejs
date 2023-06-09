@@ -1,26 +1,29 @@
-<h1>Create Employee</h1>
+<% layout('boilerplate') %>
 
-<form action="/employees/create" method="POST">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required>
+<div class="container-fluid">
+  <h3 class="text-dark mb-1">Add New Employee</h3>
+</div>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required>
+<form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/employees/create" method="post">
+  <input class="form-control" name="name" type="text" placeholder="Full Name">
 
-  <label for="fingerprint">Fingerprint:</label>
-  <input type="text" id="fingerprint" name="fingerprint" required>
+  <input class="form-control" name="email" type="text" placeholder="Email" style="margin-top: 39px;">
 
-  <label for="idNumber">ID Number:</label>
-  <input type="text" id="idNumber" name="idNumber" required>
+  <input class="form-control" name="fingerprint" type="text" placeholder="Hold the fingerprint sensor" style="margin-top: 39px;">
 
-  <label for="role">Role:</label>
-  <select id="role" name="role" required>
+  <input class="form-control" name="idNumber" type="text" placeholder="Id Number" style="margin-top: 39px;">
+
+  <select class="form-control" style="margin-top: 36px;" name="role" required>
     <option value="admin">Admin</option>
     <option value="manager">Manager</option>
     <option value="employee">Employee</option>
-  </select>
-
-  <button type="submit">Create</button>
+    <option value="inventory">Inventory</option>
+   </select>
+  <button  class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;ADD</button>
 </form>
 
-<a href="/employees">Back to Employees</a>
+</div>
+</div>\
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>
