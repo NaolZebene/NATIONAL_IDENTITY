@@ -1,4 +1,5 @@
 const Referral = require('../model/Referals');
+const Request = require("../model/Requests")
 
 // Render the create form
 exports.renderCreateForm = (req, res) => {
@@ -8,7 +9,7 @@ exports.renderCreateForm = (req, res) => {
 // Create a new referral
 exports.createReferral = async (req, res) => {
   try {
-    const { referralType, weaknesses, currentCase, location,idin ,idNumber} = req.body;
+    const { referralType, weaknesses, currentCase, location,idin ,idNumber, idNum, emergencyCode} = req.body;
     console.log(req.body)
     const referral = new Referral({
       hospitalName:idNumber,
@@ -17,7 +18,9 @@ exports.createReferral = async (req, res) => {
       currentCase,
       location, 
       hospitalId:idin,
-      from:req.session.user._id
+      from:req.session.user._id, 
+      idNumber: idNum, 
+      emergencyCode
     });
 
     await referral.save();
@@ -117,3 +120,22 @@ exports.viewAllReferrals = async (req, res) => {
     res.render('error', { message: 'Server Error' });
   }
 };
+
+module.exports.EscalateToDoctors = async function(req, res){
+  const {id} = req.params;
+  
+  const referral = await Referral.findById(id);
+  if(!referral){
+    return res.render("error", {message:"No such Id"});
+  }
+
+
+  referral.status = "pending";
+  const newRequest = new Request({
+    idNumber:referral.idNumber || emergencyCode,
+    priority:1
+  })
+
+  await newRequest.save();
+  await referral.save()
+}

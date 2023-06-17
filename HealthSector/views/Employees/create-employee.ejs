@@ -1,15 +1,24 @@
 
 
 <% layout('boilerplate') %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="container-fluid">
   <h3 class="text-dark mb-1">Add Product</h3>
 </div>
 
 <form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/employees" method="post">
-  <input class="form-control" name="idNumber" type="text" placeholder="Id Number">
-
-  <input class="form-control" name="fullName" type="text" placeholder="Full Name" style="margin-top: 39px;">
+  <input class="form-control mb-3" name="fullName" id="fullName" type="text" placeholder="Full Name" style="margin-top: 39px;">
+  <input class="form-control" name="idNumber" id="fingerprintin" type="text" placeholder="fingerprint">
+  <p class="mt-1" id="status"></p>
+  <button class="btn btn-primary mt-2" id="fingerprint" type="button">Take Fingerprint</button>
+  
+  <div class="card mt-3" style="width: 18rem;">
+    <img id="video" class="card-img-top" src="http://192.168.43.56:5000/video_feed" alt="Card image cap">
+    <div class="card-body">
+      <button id="capture-button" type="button" class="btn btn-primary">Capture</button>
+    </div>
+  </div>
 
   <input class="form-control" name="email" type="text" placeholder="example@gmail.com" style="margin-top: 39px;">
 
@@ -28,7 +37,75 @@
 </form>
 
 </div>
-</div>\
+</div>
 <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
 </a>
 </div>
+
+<script>
+  $(document).ready(function() {
+    // Capture button click event
+    $('#capture-button').click(function() {
+      // Send a POST request to the /capture endpoint
+      $.get('http://192.168.43.56:5000/stop_stream');
+      
+      $.post	('http://192.168.43.56:5000/capture', function(data) {
+        console.log(data)
+      });
+    });
+  });
+</script>
+<!-- Add the Axios CDN script tag -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  // Get the button and input elements by their IDs
+  const fingerprintButton = document.getElementById('fingerprint');
+  
+  // Add a click event listener to the fingerprint button
+  fingerprintButton.addEventListener('click', function() {
+    const fullNameInput = document.getElementById('fullName');
+    console.log("full-name", fullNameInput.value)
+    // Generate a random ID number between 0 and 999
+    const idNumber = 7;
+
+    // Get the value from the fullName input field
+    const fullName = fullNameInput.value;
+
+    // Create an object with the data to be sent
+    const data = {
+      id: idNumber,
+      name: `${fullName}.jpg`
+    };
+
+    const status = document.getElementById("status")
+    const fingerprintInput = document.getElementById("fingerprintin")
+    // Send a POST request using Axios
+    axios.post('http://192.168.43.56:3000/register', data)
+      .then(function(response) {
+        
+        // Log the response data to the console
+        console.log(response.data);
+
+        if(response.data.msg){
+          status.innerText = "Fingerprint Extracted Successfully"
+          fingerprintInput.value = response.data.image
+        }else{
+          status.innerText = "fingerprints dont match or already registered"
+        }
+      })
+      .catch(function(error) {
+        // Handle any errors that occurred during the request
+        status.innerText = "oops try again"
+        console.error(error);
+      });
+  });
+</script>
+
+
+
+
+
+
+
+

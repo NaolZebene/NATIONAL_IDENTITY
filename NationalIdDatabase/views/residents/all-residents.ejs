@@ -1,37 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>All Residents</title>
-</head>
-<body>
-  <h1>All Residents</h1>
-  <a href="/residents/create">Create Resident</a> <!-- Added Create Resident link -->
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Phone Number</th>
-        <th>ID Number</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% residents.forEach((resident) => { %>
-        <tr>
-          <td><%= resident.name %></td>
-          <td><%= resident.location %></td>
-          <td><%= resident.phoneNumber %></td>
-          <td><%= resident.idNumber %></td>
-          <td>
-            <a href="/residents/view/<%= resident._id %>">View</a>
-            <a href="/residents/edit/<%= resident._id %>">Edit</a>
-            <a href="/residents/delete/<%= resident._id %>">Delete</a>
-          </td>
-        </tr>
-      <% }); %>
-    </tbody>
-  </table>
-</body>
-</html>
+<% layout('boilerplate') %> 
+
+<div id="content-1">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4"> Employees </h3>
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">All Employees  Info</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 text-nowrap">
+                        <a class="btn btn-outline-primary" href="/residents/create">Create New</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <% for(data of residents){ %> 
+                                 <td><%= data.name %> </td>
+                                 <td><a class="btn btn-outline-warning" href="/residents/<%= data._id %>">View Details</a></td>
+                            </tr>
+                          
+                            <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>

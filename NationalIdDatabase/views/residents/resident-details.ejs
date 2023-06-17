@@ -1,16 +1,55 @@
-<h1>Resident Details</h1>
+<% layout('boilerplate') %>
 
-<h2>Name: <%= resident.name %></h2>
-<p>Location: <%= resident.location %></p>
-<p>Phone Number: <%= resident.phoneNumber %></p>
-<p>ID Number: <%= resident.idNumber %></p>
-<p>Marital Status: <%= resident.maritalStatus %></p>
-<p>Job: <%= resident.job %></p>
-<p>Birthday: <%= resident.birthday %></p>
-<p>Emergency Call: <%= resident.emergencyCall %></p>
-<p>Nationality: <%= resident.nationality %></p>
-<p>Emergency Person Name: <%= resident.emergencyPersonName %></p>
-<p>Home Number: <%= resident.homeNumber %></p>
+<img src="http://192.168.43.252:5000/<%= resident.image %>" class="img-thumbnail rounded w-25 mb-4" alt="">
 
-<a href="/residents/edit/<%= resident._id %>">Edit</a>
-<a href="/residents/delete/<%= resident._id %>">Delete</a>
+<div class="collapse show" id="collapseCardExample">
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Name:</strong> <%= resident.name %></li>
+    <li class="list-group-item"><strong>Birth Place:</strong> <%= resident.birthPlace %></li>
+    <li class="list-group-item"><strong>Phone Number:</strong> <%= resident.phoneNumber %></li>
+    <li class="list-group-item"><strong>Birthday:</strong> <%= resident.birthday.toISOString().split('T')[0] %></li>
+    <li class="list-group-item"><strong>Location:</strong> <%= resident.location %></li>
+    <li class="list-group-item"><strong>Email:</strong> <%= resident.email %></li>
+    <li class="list-group-item mb-2"><a class="btn btn-outline-primary" href="/residents/edit/<%= resident._id %>/">Edit Resident</a></li>
+  </ul>
+</div>
+</div>
+
+
+
+<div class="card mb-4">
+  <div class="card-header">
+      Other Information
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Father's Name:</strong> <%= resident.fatherName %></li>
+      <li class="list-group-item"><strong>Marital Status:</strong> <%= resident.maritalStatus %></li>
+      <li class="list-group-item"><strong>Emergency Call:</strong> <%= resident.emergencyCall %></li>
+      <li class="list-group-item"><strong>Job:</strong> <%= resident.job %></li>
+      <li class="list-group-item"><strong>Mother's Name:</strong> <%= resident.motherName %></li>
+      <li class="list-group-item"><strong>Nationality:</strong> <%= resident.nationality %></li>
+      <li class="list-group-item"><strong>Emergency Person Name:</strong> <%= resident.emergencyPersonName %></li>
+      <li class="list-group-item"><strong>Home Number:</strong> <%= resident.homeNumber %></li>
+      <li class="list-group-item"><strong>Document:</strong> <%= resident.document %></li>
+    </ul>
+   
+  </div>
+</div>
+
+
+
+
+
+<div class="card-deck p-3 ml-5">
+  <% resident.fingerprint_uniq.forEach((fingerprint, idx) => { %>
+    <div class="card-deck mr-5 mb-5">
+      <div class="card">
+        <img class="card-img-top" src="http://192.168.43.252:3000/<%=fingerprint.img_path%>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">fingerprint <%=idx + 1%></h5>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+</div>

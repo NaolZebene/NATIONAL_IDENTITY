@@ -1,49 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer'); // Don't forget to require Multer
+const multer = require('multer');
+const upload = multer({ dest: 'public/uploads/' });
+const residentsController = require('../controller/residentController');
 
-// Import the controller
-const residentController = require('../controller/residentController');
+const {isLoggedIn} = require("../util/isLoggedin")
+// Render the create resident form
+router.get('/residents/create',isLoggedIn, residentsController.renderCreateForm);
 
-// Set up Multer storage and file limits for image upload
-const imageStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/images/'); // Set the destination folder for image files
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const filename = file.fieldname + '-' + uniqueSuffix + file.originalname; // Keep the file extension intact
-    cb(null, filename); // Set the file name for image files
-  },
-});
+// Create a new resident
+router.post('/residents/create',isLoggedIn, upload.single('document'), residentsController.createResident);
 
-// Set up Multer storage and file limits for additional file upload
+// Render the edit resident form
+router.get('/residents/edit/:id/',isLoggedIn, residentsController.renderEditForm);
 
+// Update a resident
+router.post('/residents/edit/:id/',isLoggedIn, upload.single('document'), residentsController.updateResident);
 
-const uploadImage = multer({
-  storage: imageStorage,
-}).single('image'); // Specify the field name for image upload
+// Render the view resident form
+router.get('/residents/:id',isLoggedIn, residentsController.renderViewOneForm);
 
-
-// Render create resident form
-router.get('/residents/create', residentController.renderCreateResidentForm);
-
-// Handle create resident form submission
-router.post('/residents/create', uploadImage, residentController.createResident);
-
-// Render edit resident form
-router.get('/residents/edit/:id', residentController.renderEditResidentForm);
-
-// Handle edit resident form submission
-router.post('/residents/edit/:id', uploadImage, residentController.editResident);
-
-// Delete a resident
-router.get('/residents/delete/:id', residentController.deleteResident);
-
-// Render resident details
-router.get('/residents/view/:id', residentController.viewDetails);
-
-// Render all residents
-router.get('/residents/', residentController.viewAllResidents);
+// Render the view all residents form
+router.get('/residents/',isLoggedIn, residentsController.renderViewAllForm);
 
 module.exports = router;

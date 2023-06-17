@@ -8,10 +8,16 @@ exports.renderCreateForm = (req, res) => {
 // Create a new request
 exports.createRequest = async (req, res) => {
   try {
-    const { idNumber } = req.body;
-    const request = new Request({ idNumber });
+    const { idNumber , priority} = req.body;
+    const current = new Date();
+    const date  = current.toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric'
+    }); 
+
+    const request = new Request({ idNumber, date , sector_id:req.session.user.sector_id, priority:Number(priority)});
     await request.save();
-    console.log("create", request)
     res.redirect('/requests');
   } catch (error) {
     console.error(error);
@@ -88,7 +94,7 @@ exports.viewDetails = async (req, res) => {
 // View all requests
 exports.viewAll = async (req, res) => {
   try {
-    const requests = await Request.find();
+    const requests = await Request.find({sector_id : req.session.user.sector_id});
     res.render('Requests/view-requests', { requests });
   } catch (error) {
     console.error(error);

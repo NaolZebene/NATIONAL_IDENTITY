@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const residentSchema = new mongoose.Schema({
-  name: {
+name: {
     type: String,
     required: true
   },
@@ -9,12 +9,27 @@ const residentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  phoneNumber: {
+  fingerprint_uniq:[
+    {
+      ifingerpint:Number,
+      img_path:String,
+    }
+],
+  fatherName: {
+    type:String
+  },
+  motherName: {
+    type:String
+  },
+  birthPlace:{
+    type:String
+},
+phoneNumber: {
     type: String,
     required: true
   },
   idNumber: {
-    type: String,
+    type: Number,
     required: true
   },
   image: {
@@ -49,13 +64,22 @@ const residentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  fingerprint: {
-    type: String,
-  },
   homeNumber: {
     type: String,
     required: true
+  },
+  document:{
+    type:String
+  },
+  verified_by_rep:{
+    type:Boolean,
+    default:false
+  },
+  email:{
+    type:String,
+    required:true
   }
+
 });
 
 const Resident = mongoose.model('Resident', residentSchema);

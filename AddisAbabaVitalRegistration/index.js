@@ -53,10 +53,12 @@ app.use(express.json())
 const subSectorRouter = require("./router/subSectorRouter"); 
 const employeeRouter = require("./router/employeeRouter")
 const authRouter = require("./router/authRouter");
+const statRouter = require("./router/statRouter")
 
 app.use("", subSectorRouter);
 app.use("", employeeRouter);
 app.use("", authRouter);
+app.use("", statRouter)
 
 
 

@@ -1,44 +1,331 @@
-<h1>Create Resident</h1>
 
-<form action="/residents/create" method="POST" enctype="multipart/form-data">
-  <label for="name">Name:</label>
-  <input type="text" name="name" required>
+<% layout('boilerplate') %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <label for="location">Location:</label>
-  <input type="text" name="location" required>
+<div class="container-fluid">
+  <h3 class="text-dark mb-1">Add Resident</h3>
+</div>
 
-  <label for="phoneNumber">Phone Number:</label>
-  <input type="tel" name="phoneNumber" required>
+<form class="shadow-sm" style="margin: 38px;margin-top: 29px;padding: 26px;" action="/residents/create" method="post">
 
-  <label for="idNumber">ID Number:</label>
-  <input type="text" name="idNumber" required>
+  <input class="form-control mb-3" name="name" id="fullName" type="text" placeholder="Full Name" style="margin-top: 39px;">
 
-  <label for="maritalStatus">Marital Status:</label>
-  <input type="text" name="maritalStatus" required>
+  <input class="form-control mb-3" name="location" id="location" type="text" placeholder="Address" style="margin-top: 39px;">
 
-  <label for="job">Job:</label>
-  <input type="text" name="job" required>
+  <input class="form-control" name="fingerprintin1" id="fingerprintin1" type="text" placeholder="fingerprint 1">
+  <p class="mt-1" id="status1"></p>
+  <button class="btn btn-primary mt-1 mb-2" id="fingerprint1" type="button">Take Fingerprint 1</button>
 
-  <label for="birthday">Birthday:</label>
-  <input type="date" name="birthday" required>
+  <input class="form-control" name="fingerprintin2" id="fingerprintin2" type="text" placeholder="fingerprint 2">
+  <p class="mt-1" id="status2"></p>
+  <button class="btn btn-primary  mb-2" name="fingerprint2" id="fingerprint2" type="button">Take Fingerprint 2</button>
 
-  <label for="emergencyCall">Emergency Call:</label>
-  <input type="text" name="emergencyCall" required>
+  <input class="form-control" name="fingerprintin3" id="fingerprintin3" type="text" placeholder="fingerprint 3">
+  <p class="mt-1" id="status3"></p>
+  <button class="btn btn-primary  mb-2" id="fingerprint3" name="fingerprint3" type="button">Take Fingerprint 3</button>
 
-  <label for="nationality">Nationality:</label>
-  <input type="text" name="nationality" required>
+  <input class="form-control" name="fingerprintin4" id="fingerprintin4" type="text" placeholder="fingerprint 4">
+  <p class="mt-1" id="status4"></p>
+  <button class="btn btn-primary mb-2" id="fingerprint4" type="button">Take Fingerprint 4</button>
 
-  <label for="emergencyPersonName">Emergency Person Name:</label>
-  <input type="text" name="emergencyPersonName" required>
+  <input class="form-control" name="fingerprintin5" id="fingerprintin5" type="text" placeholder="fingerprint 5">
+  <p class="mt-1" id="status5"></p>
+  <button class="btn btn-primary  mb-2" id="fingerprint5" type="button">Take Fingerprint 5</button>
 
-  <label for="homeNumber">Home Number:</label>
-  <input type="text" name="homeNumber" required>
+  <input class="form-control mb-3" name="fatherName" id="fatherName" type="text" placeholder="Fathers Name" style="margin-top: 39px;">
 
-  <label for="image">Image:</label>
-  <input type="file" name="image" accept="image/*" required>
+  <input class="form-control mb-3" name="motherName" id="motherName" type="text" placeholder="Mother's Name" style="margin-top: 39px;">
 
-  <!-- <label for="additional_file">Additional File:</label>
-  <input type="file" name="additional_file" required> -->
+  <input class="form-control mb-3" name="birthPlace" id="birthPlace" type="text" placeholder="Birth Place" style="margin-top: 39px;">
 
-  <button type="submit">Create Resident</button>
+  <input class="form-control mb-3" name="phoneNumber" id="phoneNumber" type="text" placeholder="Phone Number" style="margin-top: 39px;">
+
+  <input class="form-control mb-3" name="job" id="job" type="text" placeholder="Job" style="margin-top: 39px;">
+
+  <input class="form-control" name="maritalStatus" id="maritalStatus" type="text" placeholder="Marital Status">
+
+  <input class="form-control mb-3" name="homeNumber" id="homeNumber" type="text" placeholder="Home Number" style="margin-top: 39px;">
+
+  <input class="form-control" name="nationality" id="nationality" type="text" placeholder="Nationality">
+
+  <input class="form-control mb-3" name="birthday" id="birthday" type="date" style="margin-top: 39px;">
+
+  <input class="form-control" name="emergencyCall" id="emergencyCall" type="text" placeholder="Emergency Call ">
+
+  <input class="form-control mb-3" name="emergencyPersonName" id="job" type="text" placeholder="Emergency Person Name" style="margin-top: 39px;">
+
+  <input class="form-control" name="document" id="document" type="file">
+
+  <input class="form-control" name="email" type="text" placeholder="example@gmail.com" style="margin-top: 39px;">
+  
+  <div class="card mt-3" style="width: 18rem;">
+    <input class="form-control" name="image" id="image" type="text" placeholder="fingerprint image path">
+    <img id="video" class="card-img-top" src="http://192.168.43.252:5000/video_feed" alt="Card image cap">
+    <div class="card-body">
+      <button id="capture-button" type="button" class="btn btn-primary">Capture</button>
+      <p id="im_status"></p>
+    </div>
+  </div>
+  <button  class="btn btn-primary" data-bs-hover-animate="pulse" type="submit" style="margin-top: 40px;"><i class="fa fa-plus"></i>&nbsp;ADD</button>
 </form>
+
+</div>
+</div>
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
+</a>
+</div>
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    // Capture button click event
+    
+    $('#capture-button').click(function() {
+      // Send a POST request to the /capture endpoint
+      $.get('http://192.168.43.252:5000/stop_stream').then(()=>{
+        console.log("stream stopped")
+      })
+      const textInput = $('#fullName').val();
+      const currentTime = new Date().getTime()
+      let req = {
+        filename:`${textInput}${currentTime}.jpg`
+      };
+      console.log(req)
+    $.ajax({
+      url:'http://192.168.43.252:5000/capture',
+      type:'POST', 
+      dataType:'json',
+      contentType:'application/json', 
+      data:JSON.stringify(req),
+      success:function(data){
+        console.log(data)
+         $("#image").val(`${data.data}`)
+        $("#im_status").text(data.description);
+      }
+    })
+  });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  // Get the button and input elements by their IDs
+  var pos = <%= pos %>;
+  console.log("position", pos)
+  const fingerprintButton1 = document.getElementById('fingerprint1');
+  
+  // Add a click event listener to the fingerprint button
+  fingerprintButton1.addEventListener('click', function() {
+    const fullNameInput = document.getElementById('fullName');
+    console.log("full-name", fullNameInput.value)
+    // Generate a random ID number between 0 and 999
+    const idNumber = pos;
+    
+    // Get the value from the fullName input field
+    const fullName = fullNameInput.value;
+
+    // Create an object with the data to be sent
+    const data = {
+      id: idNumber,
+      name: `${fullName}1.jpg`
+    };
+
+    const status1 = document.getElementById("status1")
+    const fingerprintInput = document.getElementById("fingerprintin1")
+    // Send a POST request using Axios
+    status1.innerText = "loading"
+    axios.post('http://192.168.43.252:3000/register', data)
+      .then(function(response) {
+        
+        // Log the response data to the console
+        console.log(response.data);
+        
+        if(response.data.msg){
+          status1.innerText = "Fingerprint Extracted Successfully"
+          fingerprintInput.value = response.data.image
+          ++pos; 
+        }else{
+          status1.innerText = "fingerprints dont match or already registered"
+        }
+      })
+      .catch(function(error) {
+        // Handle any errors that occurred during the request
+        status1.innerText = "oops try again"
+        console.error(error);
+      });
+  });
+
+
+
+
+
+
+  const fingerprintButton2 = document.getElementById('fingerprint2');
+  fingerprintButton2.addEventListener('click', function() {
+    const fullNameInput = document.getElementById('fullName');
+    console.log("full-name", fullNameInput.value)
+    // Generate a random ID number between 0 and 999
+    const idNumber = pos;
+    // Get the value from the fullName input field
+    const fullName = fullNameInput.value;
+
+    // Create an object with the data to be sent
+    const data = {
+      id: idNumber,
+      name: `${fullName}2.jpg`
+    };
+
+    const status = document.getElementById("status2")
+    const fingerprintInput = document.getElementById("fingerprintin2")
+    // Send a POST request using Axios
+    status2.innerText = "loading"
+    axios.post('http://192.168.43.252:3000/register', data)
+      .then(function(response) {
+        
+        // Log the response data to the console
+        
+        console.log(response.data);
+
+        if(response.data.msg){
+          status.innerText = "Fingerprint Extracted Successfully"
+          fingerprintInput.value = response.data.image
+          ++pos;
+        }else{
+          status.innerText = "fingerprints dont match or already registered"
+        }
+      })
+      .catch(function(error) {
+        // Handle any errors that occurred during the request
+        status.innerText = "oops try again"
+        console.error(error);
+      });
+  });
+
+
+  const fingerprintButton3 = document.getElementById('fingerprint3');
+  fingerprintButton3.addEventListener('click', function() {
+    const fullNameInput = document.getElementById('fullName');
+    console.log("full-name", fullNameInput.value)
+    // Generate a random ID number between 0 and 999
+    const idNumber = pos;
+    
+    // Get the value from the fullName input field
+    const fullName = fullNameInput.value;
+    console.log(fullName)
+
+    // Create an object with the data to be sent
+    const data = {
+      id: idNumber,
+      name: `${fullName}3.jpg`
+    };
+    const status = document.getElementById("status3")
+    const fingerprintInput = document.getElementById("fingerprintin3")
+    // Send a POST request using Axios
+    status3.innerText = "loading"
+    axios.post('http://192.168.43.252:3000/register', data)
+      .then(function(response) {
+        // Log the response data to the console
+        
+        console.log(response.data);
+        
+        if(response.data.msg){
+          status.innerText = "Fingerprint Extracted Successfully"
+          fingerprintInput.value = response.data.image
+          ++pos;
+        }else{
+          status.innerText = "fingerprints dont match or already registered"
+        }
+      })
+      .catch(function(error) {
+        // Handle any errors that occurred during the request
+        status.innerText = "oops try again"
+        console.error(error);
+      });
+  });
+
+  const fingerprintButton4 = document.getElementById('fingerprint4');
+  fingerprintButton4.addEventListener('click', function() {
+    const fullNameInput = document.getElementById('fullName');
+    console.log("full-name", fullNameInput.value)
+    // Generate a random ID number between 0 and 999
+    const idNumber = pos;
+   
+    // Get the value from the fullName input field
+    const fullName = fullNameInput.value;
+
+    // Create an object with the data to be sent
+    const data = {
+      id: idNumber,
+      name: `${fullName}4.jpg`
+    };
+
+    const status = document.getElementById("status4")
+    const fingerprintInput = document.getElementById("fingerprintin4")
+    status4.innerText = "loading"
+    // Send a POST request using Axios
+    axios.post('http://192.168.43.252:3000/register', data)
+      .then(function(response) {
+        
+        // Log the response data to the console
+        console.log(response.data);
+
+        if(response.data.msg){
+          ++pos
+          status.innerText = "Fingerprint Extracted Successfully"
+          fingerprintInput.value = response.data.image
+        }else{
+          status.innerText = "fingerprints dont match or already registered"
+        }
+      })
+      .catch(function(error) {
+        // Handle any errors that occurred during the request
+        status.innerText = "oops try again"
+        console.error(error);
+      });
+  });
+
+  const fingerprintButton5 = document.getElementById('fingerprint5');
+  fingerprintButton5.addEventListener('click', function() {
+    const fullNameInput = document.getElementById('fullName');
+    console.log("full-name", fullNameInput.value)
+    // Generate a random ID number between 0 and 999
+    const idNumber = pos;
+    
+    // Get the value from the fullName input field
+    const fullName = fullNameInput.value;
+
+    // Create an object with the data to be sent
+    const data = {
+      id: idNumber,
+      name: `${fullName}5.jpg`
+    };
+
+    const status = document.getElementById("status5")
+    const fingerprintInput = document.getElementById("fingerprintin5")
+    // Send a POST request using Axios
+    status5.innerText = "loading"
+    axios.post('http://192.168.43.252:3000/register', data)
+      .then(function(response) {
+        
+        // Log the response data to the console
+        console.log(response.data);
+
+        if(response.data.msg){
+          status.innerText = "Fingerprint Extracted Successfully"
+          fingerprintInput.value = response.data.image
+          ++pos
+        }else{
+          status.innerText = "fingerprints dont match or already registered"
+        }
+      })
+      .catch(function(error) {
+        // Handle any errors that occurred during the request
+        status.innerText = "oops try again"
+        console.error(error);
+      });
+  });
+</script>

@@ -27,7 +27,16 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+
+
+
+
+const url = `http://localhost:3000/stat/datas`
 // Bar Chart Example
+
+fetch(url).then(response => {
+  console.log(response.json())
+})
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',

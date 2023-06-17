@@ -14,6 +14,13 @@
 
   <input class="form-control" name="location" type="text" placeholder="Location" required>
 
+  <input class="form-control mt-3" id="fingerprintin" name="idNum" type="text" placeholder="Fingerprint">
+  <p class="mt-1" id="status"></p>
+  <button class="btn btn-primary mb-4" type="button" id="fingerprint">Take Fingerprint</button>
+
+  <input class="form-control mb-3" id="emergencyCode" name="emergencyCode" type="emergencyCode" placeholder="Please Dont Generate the Id if the user have fingerprint">
+  <button class="btn btn-primary mb-3" id="generateId" type="button">Generate</button>
+
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Referral Type</label>
     <textarea class="form-control" name="referralType" id="exampleFormControlTextarea1" rows="3" required></textarea>
@@ -35,7 +42,7 @@
 </form>
 
 </div>
-</div>\
+</div>
 <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i>
 </a>
 </div>
@@ -94,6 +101,49 @@ document.addEventListener('DOMContentLoaded', () => {
   // Event listener for input changes
   searchInput.addEventListener('input', performLiveSearch);
 });
-
-
 </script>
+
+<script>
+  // Get the button and input elements by their IDs
+  const fingerprintButton = document.getElementById('fingerprint');
+  
+  // Add a click event listener to the fingerprint button
+  fingerprintButton.addEventListener('click', function() {
+
+
+    const status = document.getElementById("status")
+    status.innerText = "PLEASE WAIT"
+
+    const fingerprintInput = document.getElementById("fingerprintin")
+    // Send a POST request using Axios
+    axios.post('http://192.168.43.56:3000/find')
+      .then(function(response) {
+        console.log(response.data);
+        if(response.data.msg){
+          status.innerText = "Fingerprint Verified"
+          fingerprintInput.value = response.data.id
+        }else{
+          status.innerText = "fingerprint Not found"
+        }
+      })
+      .catch(function(error) {
+        // Handle any errors that occurred during the request
+        status.innerText = "oops try again"
+        console.error(error);
+      });
+  });
+</script>
+
+
+<!-- Include uuid library -->
+<!-- Include uuid library -->
+<script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+
+<script>
+  document.getElementById('generateId').addEventListener('click', function() {
+    // Generate a unique ID using uuid
+    const uniqueId = uuidv4();
+    document.getElementById('emergencyCode').value = uniqueId;
+  });
+</script>
+

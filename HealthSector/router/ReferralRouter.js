@@ -25,4 +25,8 @@ router.get('/referrals/details/:id',isLoggedIn,authorize(["admin", "card", "doct
 // View all referrals
 router.get('/referrals/',isLoggedIn, referralController.viewAllReferrals);
 
+router.get("/referrals/escalate/:id", isLoggedIn ,authorize(["admin", "card", "doctor"]), referralController.EscalateToDoctors)
+
+
+
 module.exports = router;

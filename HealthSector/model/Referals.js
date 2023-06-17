@@ -29,7 +29,7 @@ const referralSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'done', 'active'],
+    enum: ['pending', 'completed', 'active'],
     default: 'pending'
   },
   requestSent:{
@@ -44,8 +44,8 @@ const referralSchema = new mongoose.Schema({
     type:String, 
     required:false
   }, 
-  fingerprint:{
-    type:String
+  idNum:{
+    type:Number
   }
 });
 

@@ -5,8 +5,8 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  idNumber: {
-    type: String,
+  uniqC: {
+    type: Number,
   },
   email: {
     type: String,

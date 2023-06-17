@@ -55,6 +55,7 @@ const weaponOwnership = require("./router/weaponOwnerShip");
 const employeeRouter = require("./router/employeeRouter")
 const subSectorRouter = require("./router/SubsectorRouter");
 const authController = require("./router/authRouter");
+const statRouter = require("./router/statRouter")
 
 app.use("", crimeRouter)
 app.use("", weaponRouter)
@@ -62,7 +63,7 @@ app.use("", weaponOwnership)
 app.use("",employeeRouter)
 app.use("",subSectorRouter);
 app.use("",authController);
-
+app.use("", statRouter);
 
 app.get("/",isLoggedIn, function(req, res){
   return res.render("index");

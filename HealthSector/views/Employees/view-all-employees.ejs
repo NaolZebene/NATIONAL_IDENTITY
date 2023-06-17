@@ -35,8 +35,7 @@
                         <tbody>
                             <tr>
                             <% for(data of employees){ %> 
-
-                         
+                                 <%if(currentUser._id != data._id) { %>
                                  <td><%= data.fullName %> </td>
                                  <td><%= data.idNumber %> </td>
                                  <td><%= data.email %> </td>
@@ -45,7 +44,7 @@
                                  <!-- <td> <a class="btn btn-outline-primary" href="/employees/<%= data._id %>">View</a></td> -->
                                  <td><a class="btn btn-outline-warning" href="/employees/<%= data._id %>/edit">Edit</a></td>
                                  <td><a class="btn btn-outline-danger" href="/employees/<%= data._id %>/delete">Delete</a></td>
-
+                                 <% } %>
                             </tr>
                           
                             <% } %> 

@@ -30,7 +30,14 @@
                             <tr>
                             <% for(data of requests){ %>
                                  <td><%= data.idNumber %> </td>
+                                 <% if(data.priority == 1){ %>
+                                 <td class="btn btn-danger">Emergency</td>
+                                 <% }else{ %>
+                                    <td class="btn btn-warning">Regular</td>
+                                <% } %>
+                                 <% if(currentUser.role == "doctor"){ %>
                                  <td><a class="btn btn-warning" href="/requests/doctoredit/<%= data._id %>/">Start Session</a></td>
+                                 <% } %>
                             <td><form action="/request/delete/<%=data._id%>" method="GET" style="display: inline-block;">
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form></td>

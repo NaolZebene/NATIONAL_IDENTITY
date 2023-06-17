@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const requestSchema = new mongoose.Schema({
-  personalInformation: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Person',
-  },
   idNumber:{
     type:String
   },
@@ -48,6 +44,20 @@ const requestSchema = new mongoose.Schema({
       img_path : String,
       description: String
      }
+  }, 
+
+  date : {
+    type:Date, 
+    required:true
+  },
+
+  sector_id:{
+    type:mongoose.Types.ObjectId, 
+    required:true
+  }, 
+  priority:{
+    type:Number, 
+    enum :[1, 2]
   }
 });
 
